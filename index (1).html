@@ -1,0 +1,1878 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Plano Estratégico Compliance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root{
+    /* azuis */
+    --navy-900:#0b1f38; --navy-800:#102a4a; --navy-700:#163a63; --navy-600:#1c4f8f;
+    --blue-500:#2a6dc0; --blue-400:#4a8ada; --blue-300:#82b4e8; --blue-200:#b9d5f4; --blue-100:#dfebfa; --blue-50:#eff5fd;
+    /* superfícies */
+    --page:#f2f7fd; --surface:#ffffff; --surface-2:#f6faff; --surface-3:#eaf2fc;
+    --ink:#0b1f38; --ink-2:#3f5975; --ink-muted:#7189a5;
+    --grid:#dbe7f5; --border:#d3e2f2; --border-strong:#b9d0e8;
+    --accent:var(--blue-500); --accent-ink:#ffffff; --accent-soft:#e4eefb;
+    /* status */
+    --st-done:#0f7a52; --st-done-bg:#dff3e9;
+    --st-doing:#9a6208; --st-doing-bg:#fbeed4;
+    --st-todo:#4f6a86; --st-todo-bg:#e8eff7;
+    --st-late:#bf3434; --st-late-bg:#fbe4e4;
+    /* trimestres (rampa azul) */
+    --q-1:#b9d5f4; --q-2:#82b4e8; --q-3:#2a6dc0; --q-4:#163a63;
+    /* okr (rampa azul) */
+    --okr-1:#0f2c50; --okr-2:#1c4f8f; --okr-3:#3a80d0; --okr-4:#82b4e8;
+    --shadow:0 1px 2px rgba(11,31,56,.06), 0 2px 8px rgba(11,31,56,.04);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --page:#07131f; --surface:#0f2136; --surface-2:#142a43; --surface-3:#1a3150;
+      --ink:#f2f7fd; --ink-2:#b7cbe1; --ink-muted:#8ba4bf;
+      --grid:#1f3a58; --border:#22405f; --border-strong:#2e5177;
+      --accent:#4a8ada; --accent-ink:#06121f; --accent-soft:#16304c;
+      --st-done:#42c191; --st-done-bg:rgba(66,193,145,.16);
+      --st-doing:#e0a94e; --st-doing-bg:rgba(224,169,78,.16);
+      --st-todo:#94aec9; --st-todo-bg:rgba(148,174,201,.14);
+      --st-late:#f07d7d; --st-late-bg:rgba(240,125,125,.16);
+      --q-1:#163a63; --q-2:#1c4f8f; --q-3:#3a80d0; --q-4:#82b4e8;
+      --okr-1:#82b4e8; --okr-2:#4a8ada; --okr-3:#2a6dc0; --okr-4:#163a63;
+      --shadow:0 1px 2px rgba(0,0,0,.3);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --page:#07131f; --surface:#0f2136; --surface-2:#142a43; --surface-3:#1a3150;
+    --ink:#f2f7fd; --ink-2:#b7cbe1; --ink-muted:#8ba4bf;
+    --grid:#1f3a58; --border:#22405f; --border-strong:#2e5177;
+    --accent:#4a8ada; --accent-ink:#06121f; --accent-soft:#16304c;
+    --st-done:#42c191; --st-done-bg:rgba(66,193,145,.16);
+    --st-doing:#e0a94e; --st-doing-bg:rgba(224,169,78,.16);
+    --st-todo:#94aec9; --st-todo-bg:rgba(148,174,201,.14);
+    --st-late:#f07d7d; --st-late-bg:rgba(240,125,125,.16);
+    --q-1:#163a63; --q-2:#1c4f8f; --q-3:#3a80d0; --q-4:#82b4e8;
+    --okr-1:#82b4e8; --okr-2:#4a8ada; --okr-3:#2a6dc0; --okr-4:#163a63;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--page); color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:"Archivo","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0; }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  .tabular{ font-variant-numeric:tabular-nums; }
+  .inner{ max-width:1180px; margin:0 auto; padding-inline:20px; }
+
+  /* ---------- masthead ---------- */
+  .masthead{ background:linear-gradient(135deg,var(--navy-900) 0%, var(--navy-700) 100%); color:#fff; padding-block:26px 22px; }
+  .masthead .inner{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; }
+  .eyebrow{ font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-300); margin:0 0 8px; }
+  .masthead h1{ font-size:clamp(22px,3.4vw,31px); font-weight:800; letter-spacing:-0.01em; color:#fff; }
+  .masthead .sub{ margin:8px 0 0; color:var(--blue-200); font-size:13.5px; max-width:60ch; }
+  .sync{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--blue-200); white-space:nowrap; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--blue-300); flex:none; }
+  .dot.live{ background:#4ade80; box-shadow:0 0 0 3px rgba(74,222,128,.25); }
+  .dot.off{ background:#f87171; box-shadow:0 0 0 3px rgba(248,113,113,.25); }
+
+  /* ---------- tabs ---------- */
+  .tabbar{ background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:20; }
+  .tabbar .inner{ display:flex; gap:4px; overflow-x:auto; }
+  .tab{
+    font:inherit; font-size:13.5px; font-weight:600; color:var(--ink-muted); background:none; border:none;
+    padding:14px 14px 12px; border-bottom:3px solid transparent; cursor:pointer; white-space:nowrap;
+  }
+  .tab:hover{ color:var(--ink-2); }
+  .tab[aria-selected="true"]{ color:var(--navy-600); border-bottom-color:var(--blue-500); }
+  :root[data-theme="dark"] .tab[aria-selected="true"], :root:not([data-theme="light"]) .tab[aria-selected="true"]{ color:var(--accent); }
+  .tab .count{ font-weight:500; color:var(--ink-muted); margin-left:5px; font-size:12px; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:24px 20px 70px; }
+  .tabpanel[hidden]{ display:none; }
+
+  .banner{ margin-bottom:16px; padding:10px 14px; border-radius:8px; background:var(--st-late-bg); color:var(--st-late); border:1px solid var(--border); font-size:13px; display:none; }
+  .banner.show{ display:block; }
+
+  /* ---------- cards / kpis ---------- */
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; box-shadow:var(--shadow); }
+  .card h3{ font-size:13px; font-weight:600; color:var(--ink-2); margin-bottom:16px; letter-spacing:.01em; }
+
+  .kpis{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
+  .tile{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow); }
+  .tile.hero{ background:linear-gradient(135deg,var(--navy-800),var(--navy-600)); border-color:transparent; }
+  .tile .label{ font-size:10.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); }
+  .tile.hero .label{ color:var(--blue-300); }
+  .tile .value{ font-family:"Archivo",sans-serif; font-weight:800; font-size:32px; margin-top:6px; letter-spacing:-0.02em; }
+  .tile.hero .value{ color:#fff; font-size:40px; }
+  .tile .sub{ font-size:12.5px; color:var(--ink-2); margin-top:5px; }
+  .tile.hero .sub{ color:var(--blue-200); }
+  .tile .value.late{ color:var(--st-late); }
+
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:26px 0 14px; flex-wrap:wrap; }
+  .section-head h2{ font-size:17px; font-weight:700; }
+  .section-head .note{ font-size:12.5px; color:var(--ink-muted); }
+
+  /* ---------- charts ---------- */
+  .charts{ display:grid; grid-template-columns:1.05fr 1fr; gap:12px; }
+  .charts-row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+  @media (max-width:820px){ .charts,.charts-row2{ grid-template-columns:1fr; } }
+
+  .bar-row{ display:grid; grid-template-columns:52px 1fr 46px; align-items:center; gap:10px; margin-bottom:13px; }
+  .bar-row:last-child{ margin-bottom:0; }
+  .bar-row .rlabel{ font-size:12.5px; font-weight:600; color:var(--ink-2); }
+  .bar-track{ height:10px; border-radius:6px; background:var(--grid); overflow:hidden; }
+  .bar-fill{ display:block; height:100%; border-radius:6px; min-width:3px; transition:width .4s ease; }
+  .bar-row .rval{ font-size:12.5px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }
+
+  .qchart{ display:flex; gap:14px; position:relative; }
+  .qchart .refline{ position:absolute; left:0; right:0; border-top:2px dashed var(--st-late); z-index:1; }
+  .qcol{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .qcol .qval{ height:18px; display:flex; align-items:flex-end; font-size:11.5px; font-weight:700; color:var(--ink-2); }
+  .qcol .qbar-area{ width:100%; height:96px; display:flex; align-items:flex-end; justify-content:center; }
+  .qcol .qbar{ width:100%; max-width:46px; border-radius:5px 5px 3px 3px; }
+  .qcol .qlab{ height:18px; font-size:11px; color:var(--ink-muted); margin-top:5px; text-align:center; }
+  .qcol.current .qlab{ color:var(--accent); font-weight:700; }
+  .qchart-legend{ display:flex; gap:16px; font-size:11.5px; color:var(--ink-2); margin-top:14px; flex-wrap:wrap; }
+  .qchart-legend b{ color:var(--ink); }
+  .qchart-legend .sw{ display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+  .qchart-legend .ln{ display:inline-block; width:12px; height:2px; margin-right:5px; vertical-align:2px; background:var(--st-late); }
+
+  .status-bar{ display:flex; height:28px; border-radius:7px; overflow:hidden; border:1px solid var(--border); }
+  .status-bar div{ height:100%; }
+  .status-legend{ display:flex; flex-wrap:wrap; gap:14px; margin-top:14px; font-size:12.5px; }
+  .status-legend .item{ display:flex; align-items:center; gap:6px; color:var(--ink-2); }
+  .status-legend .sw{ width:10px; height:10px; border-radius:3px; flex:none; }
+  .status-legend b{ color:var(--ink); font-variant-numeric:tabular-nums; }
+
+  .resp-row{ display:grid; grid-template-columns:120px 1fr 28px; align-items:center; gap:10px; margin-bottom:11px; font-size:12.5px; }
+  .resp-row:last-child{ margin-bottom:0; }
+  .resp-row .rname{ color:var(--ink-2); font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .resp-row .rcount{ text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+
+  /* ---------- status chips ---------- */
+  .chip{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; white-space:nowrap; }
+  .chip::before{ content:""; width:7px; height:7px; border-radius:50%; background:currentColor; flex:none; }
+  .chip.s-done{ background:var(--st-done-bg); color:var(--st-done); }
+  .chip.s-doing{ background:var(--st-doing-bg); color:var(--st-doing); }
+  .chip.s-todo{ background:var(--st-todo-bg); color:var(--st-todo); }
+  .chip.s-late{ background:var(--st-late-bg); color:var(--st-late); }
+
+  select.status-select{
+    font:inherit; font-size:11.5px; font-weight:700; padding:5px 9px; border-radius:20px;
+    border:1px solid currentColor; cursor:pointer;
+  }
+  select.status-select.s-done{ background:var(--st-done-bg); color:var(--st-done); }
+  select.status-select.s-doing{ background:var(--st-doing-bg); color:var(--st-doing); }
+  select.status-select.s-todo{ background:var(--st-todo-bg); color:var(--st-todo); }
+  select.status-select option{ background:var(--surface); color:var(--ink); font-weight:500; }
+
+  /* ---------- inputs ---------- */
+  .field-label{ font-size:10px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:4px; display:block; }
+  textarea.editable, input.editable{
+    width:100%; font:inherit; font-size:13.5px; color:var(--ink); background:var(--surface-2);
+    border:1px solid var(--border); border-radius:8px; padding:8px 10px; resize:vertical; font-family:inherit; line-height:1.45;
+  }
+  textarea.editable{ min-height:40px; }
+  textarea.editable:focus, input.editable:focus{ outline:2px solid var(--accent); outline-offset:1px; background:var(--surface); }
+
+  .meta-anual{ background:var(--accent-soft); border-left:4px solid var(--blue-500); border-radius:0 10px 10px 0; padding:12px 16px; margin:12px 0 10px; }
+  .meta-anual .ma-label{ font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--navy-600); display:block; margin-bottom:4px; }
+  :root[data-theme="dark"] .meta-anual .ma-label, :root:not([data-theme="light"]) .meta-anual .ma-label{ color:var(--blue-300); }
+  .meta-anual textarea{
+    width:100%; font-family:"Archivo","IBM Plex Sans",sans-serif; font-size:15px; font-weight:600; line-height:1.35;
+    color:var(--ink); background:transparent; border:1px solid transparent; border-radius:6px; padding:2px 4px; resize:vertical; min-height:24px;
+  }
+  .meta-anual textarea:hover{ border-color:var(--border-strong); }
+  .meta-anual textarea:focus{ outline:2px solid var(--accent); background:var(--surface); }
+  .baseline-row{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; font-size:11.5px; color:var(--ink-muted); margin-bottom:10px; }
+  .baseline-row label{ font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:10px; flex:none; }
+  .baseline-row input{ flex:1; min-width:170px; font:inherit; font-size:12px; color:var(--ink-2); background:transparent; border:1px solid transparent; border-radius:6px; padding:3px 6px; }
+  .baseline-row input:hover{ border-color:var(--border); }
+  .baseline-row input:focus{ outline:2px solid var(--accent); background:var(--surface); color:var(--ink); }
+  .qtargets{ display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin:0 0 14px; }
+  .qtargets .qt-label{ font-size:10px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); margin-right:2px; }
+  .qtargets .qt{ font-size:11px; font-weight:600; padding:3px 8px; border-radius:6px; background:var(--surface-3); color:var(--ink-2); }
+  .qtargets .qt.anual{ background:var(--navy-600); color:#fff; }
+
+  /* ---------- okr chip ---------- */
+  .okr-chip{ font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600; padding:3px 9px; border-radius:6px; color:#fff; flex:none; }
+
+  /* ---------- aba: por KR ---------- */
+  .kr-layout{ display:grid; grid-template-columns:300px 1fr; gap:16px; align-items:start; }
+  @media (max-width:900px){ .kr-layout{ grid-template-columns:1fr; } }
+  .kr-list{ display:flex; flex-direction:column; gap:8px; }
+  .kr-group-label{ font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); margin:10px 0 2px; }
+  .kr-group-label:first-child{ margin-top:0; }
+  .kr-item{
+    text-align:left; font:inherit; width:100%; cursor:pointer;
+    background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--border-strong);
+    border-radius:10px; padding:11px 13px; display:flex; flex-direction:column; gap:7px;
+  }
+  .kr-item:hover{ border-color:var(--border-strong); background:var(--surface-2); }
+  .kr-item[aria-current="true"]{ border-color:var(--blue-500); border-left-color:var(--blue-500); background:var(--accent-soft); }
+  .kr-item .kr-t{ font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.35; }
+  .kr-item .kr-m{ display:flex; align-items:center; gap:8px; }
+  .kr-item .kr-m .bar-track{ flex:1; height:7px; }
+  .kr-item .kr-m .pct{ font-size:11.5px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink-2); }
+  .kr-item .kr-s{ font-size:11px; color:var(--ink-muted); }
+
+  .kr-detail-head{ display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .kr-detail-head .okr-t{ flex:1; min-width:200px; font-size:17px; font-weight:800; line-height:1.3; font-family:"Archivo",sans-serif; }
+  .kr-detail-head .okr-sub{ display:block; font-family:"IBM Plex Sans",sans-serif; font-size:12px; font-weight:500; color:var(--ink-muted); margin-top:4px; }
+  input.nc-input{ font-weight:600; font-size:14px; }
+  .kr-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin:14px 0 4px; }
+  .kr-stat{ background:var(--surface-2); border:1px solid var(--border); border-radius:9px; padding:10px 12px; }
+  .kr-stat .n{ font-family:"Archivo",sans-serif; font-size:20px; font-weight:800; }
+  .kr-stat .l{ font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-muted); margin-top:2px; }
+
+  /* ---------- ação (card) ---------- */
+  .acoes-list{ display:flex; flex-direction:column; gap:10px; }
+  .acao{ background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:13px 14px; }
+  .acao.late{ border-left:4px solid var(--st-late); }
+  .acao.done{ border-left:4px solid var(--st-done); }
+  .acao.doing{ border-left:4px solid var(--st-doing); }
+  .acao.todo{ border-left:4px solid var(--st-todo); }
+  .acao-top{ display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap; }
+  .acao-top .acao-status{ flex:none; display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+  .acao-top textarea{ flex:1; min-width:220px; }
+  .acao-grid{ display:grid; grid-template-columns:1fr 1fr; gap:9px 12px; margin-top:11px; }
+  @media (max-width:640px){ .acao-grid{ grid-template-columns:1fr; } }
+  .acao-field label{ display:block; font-size:9.5px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-muted); margin-bottom:3px; }
+  .acao-field input, .acao-field select{
+    width:100%; font:inherit; font-size:12.5px; padding:6px 9px; border-radius:7px; border:1px solid var(--border);
+    background:var(--surface-2); color:var(--ink);
+  }
+  .acao-field input:focus, .acao-field select:focus{ outline:2px solid var(--accent); outline-offset:1px; background:var(--surface); }
+  .acao-actions{ display:flex; align-items:center; gap:12px; margin-top:11px; flex-wrap:wrap; }
+  .linkbtn{ font-size:12px; font-weight:600; color:var(--accent); text-decoration:none; }
+  .linkbtn:hover{ text-decoration:underline; }
+  .ghost-btn{ font:inherit; font-size:12px; font-weight:600; color:var(--navy-600); background:var(--surface-2); border:1px solid var(--border); border-radius:7px; padding:6px 11px; cursor:pointer; }
+  .ghost-btn:hover{ background:var(--accent-soft); border-color:var(--border-strong); }
+  :root[data-theme="dark"] .ghost-btn, :root:not([data-theme="light"]) .ghost-btn{ color:var(--blue-300); }
+  .danger-btn{ font:inherit; font-size:12px; color:var(--st-late); background:none; border:none; cursor:pointer; padding:4px 2px; }
+  .danger-btn:hover{ text-decoration:underline; }
+
+  /* etapas */
+  .etapas{ margin-top:12px; padding:12px 12px 8px; background:var(--surface-2); border:1px solid var(--border); border-radius:9px; }
+  .etapas-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:9px; flex-wrap:wrap; }
+  .etapas-head .et-label{ font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); }
+  .etapas-head .et-prog{ display:flex; align-items:center; gap:8px; min-width:150px; flex:1; max-width:240px; }
+  .etapas-head .et-prog .bar-track{ flex:1; height:7px; }
+  .etapas-head .et-prog .pct{ font-size:11.5px; font-weight:700; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+  .et-row{ display:flex; align-items:center; gap:9px; margin-bottom:7px; }
+  .et-row input[type="checkbox"]{ width:16px; height:16px; accent-color:var(--st-done); flex:none; cursor:pointer; }
+  .et-row .et-desc{ flex:1; min-width:120px; font:inherit; font-size:12.5px; padding:5px 9px; border-radius:7px; border:1px solid var(--border); background:var(--surface); color:var(--ink); }
+  .et-row .et-desc:focus{ outline:2px solid var(--accent); }
+  .et-row.done .et-desc{ color:var(--ink-muted); text-decoration:line-through; }
+  .et-row .et-link{ width:130px; font:inherit; font-size:11.5px; padding:5px 8px; border-radius:7px; border:1px solid var(--border); background:var(--surface); color:var(--ink-2); }
+  @media (max-width:640px){ .et-row .et-link{ display:none; } }
+
+  /* ---------- aba: trimestre ---------- */
+  .tri-toolbar{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px; }
+  .tri-pick{ display:flex; flex-direction:column; gap:5px; }
+  .tri-pick label{ font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); }
+  .tri-pick select{ font:inherit; font-size:13.5px; font-weight:600; padding:9px 12px; border-radius:9px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink); min-width:220px; }
+  .tri-pick select:focus{ outline:2px solid var(--accent); }
+  @media (max-width:520px){ .tri-pick, .tri-pick select{ width:100%; min-width:0; } }
+
+  .tri-head{ background:linear-gradient(135deg,var(--navy-800),var(--navy-600)); color:#fff; border-radius:12px; padding:20px 22px; margin-bottom:12px; }
+  .tri-head .th-top{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+  .tri-head h2{ font-size:20px; font-weight:800; color:#fff; }
+  .tri-head .th-period{ font-size:12.5px; color:var(--blue-200); }
+  .tri-head .th-scope{ font-size:12.5px; color:var(--blue-200); margin-top:6px; }
+  .tri-head .th-figs{ display:flex; gap:28px; flex-wrap:wrap; margin-top:16px; }
+  .tri-head .th-fig .n{ font-family:"Archivo",sans-serif; font-size:30px; font-weight:800; line-height:1.1; }
+  .tri-head .th-fig .l{ font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--blue-300); margin-top:3px; }
+
+  .cmp-row{ display:grid; grid-template-columns:132px 1fr 46px; align-items:center; gap:10px; margin-bottom:14px; }
+  .cmp-row:last-child{ margin-bottom:0; }
+  .cmp-row .cl{ font-size:12px; font-weight:600; color:var(--ink-2); }
+  .cmp-row .bar-track{ height:14px; }
+  .cmp-row .cv{ font-size:13px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }
+  .cmp-note{ font-size:12px; color:var(--ink-muted); margin-top:12px; line-height:1.5; }
+
+  .tri-section-title{ font-size:14px; font-weight:700; margin:24px 0 4px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .tri-section-title .n{ font-size:11.5px; font-weight:600; color:var(--ink-muted); }
+  .tri-section-sub{ font-size:12px; color:var(--ink-muted); margin:0 0 12px; }
+
+  .tri-item{ background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:9px; }
+  .tri-item.late{ border-left:4px solid var(--st-late); }
+  .tri-item.done{ border-left:4px solid var(--st-done); }
+  .tri-item.doing{ border-left:4px solid var(--st-doing); }
+  .tri-item.todo{ border-left:4px solid var(--st-todo); }
+  .tri-item .ti-top{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:7px; }
+  .tri-item .ti-desc{ font-size:13.5px; font-weight:600; line-height:1.4; }
+  .tri-item .ti-meta{ font-size:11.5px; color:var(--ink-muted); margin-top:5px; display:flex; gap:14px; flex-wrap:wrap; }
+  .tri-item .ti-meta b{ color:var(--ink-2); font-weight:600; }
+  .tri-etapas{ margin-top:11px; padding-top:10px; border-top:1px dashed var(--border); }
+  .tri-etapas .et-label{ font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-muted); display:block; margin-bottom:8px; }
+
+  .q-badge{ font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:600; padding:3px 7px; border-radius:5px; background:var(--surface-3); color:var(--ink-2); }
+  .q-badge.auto{ opacity:.85; }
+  select.q-select{ font:inherit; font-size:11px; font-weight:600; padding:4px 6px; border-radius:6px; border:1px solid var(--border); background:var(--surface); color:var(--ink-2); flex:none; width:74px; }
+  select.q-select:focus{ outline:2px solid var(--accent); }
+  select.q-select.unset{ border-color:var(--st-doing); color:var(--st-doing); }
+
+  /* ---------- aba: prazos ---------- */
+  .prazo-toolbar{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:18px; font-size:13px; color:var(--ink-2); }
+  .prazo-toolbar label{ display:flex; align-items:center; gap:7px; cursor:pointer; }
+  .prazo-toolbar select{ font:inherit; font-size:13px; padding:7px 10px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--ink); }
+  .prazo-group{ margin-bottom:24px; }
+  .prazo-group > h3{ font-size:13px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .prazo-group > h3 .n{ font-size:11.5px; font-weight:600; color:var(--ink-muted); }
+  .dl-item{
+    display:grid; grid-template-columns:104px 1fr 150px 132px; gap:14px; align-items:start;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:13px 15px; margin-bottom:9px;
+  }
+  @media (max-width:860px){ .dl-item{ grid-template-columns:1fr; gap:10px; } }
+  .dl-item.late{ border-left:4px solid var(--st-late); }
+  .dl-item.soon{ border-left:4px solid var(--st-doing); }
+  .dl-item.later{ border-left:4px solid var(--blue-300); }
+  .dl-item.done{ border-left:4px solid var(--st-done); }
+  .dl-date .d{ font-family:"Archivo",sans-serif; font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .dl-date .rel{ font-size:11px; color:var(--ink-muted); margin-top:2px; }
+  .dl-date .rel.late{ color:var(--st-late); font-weight:600; }
+  .dl-date .rel.done{ color:var(--st-done); font-weight:600; }
+  .dl-main .kr-line{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:5px; }
+  .dl-main .kr-meta{ font-size:11px; color:var(--ink-muted); }
+  .dl-main .acao-desc{ font-size:13.5px; font-weight:600; line-height:1.4; }
+  .dl-main .plano-line{ font-size:11.5px; color:var(--ink-2); margin-top:4px; }
+  .dl-main .plano-line b{ color:var(--ink-muted); font-weight:600; text-transform:uppercase; font-size:9.5px; letter-spacing:.06em; }
+  .dl-main .et-mini{ display:flex; align-items:center; gap:8px; margin-top:7px; max-width:260px; }
+  .dl-main .et-mini .bar-track{ flex:1; height:6px; }
+  .dl-main .et-mini span{ font-size:11px; color:var(--ink-muted); font-variant-numeric:tabular-nums; }
+  .dl-resp label, .dl-status label{ display:block; font-size:9.5px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-muted); margin-bottom:4px; }
+  .dl-resp input{ width:100%; font:inherit; font-size:12.5px; padding:6px 9px; border-radius:7px; border:1px solid var(--border); background:var(--surface-2); color:var(--ink); }
+  .dl-resp input:focus{ outline:2px solid var(--accent); background:var(--surface); }
+
+  /* ---------- aba: plano completo ---------- */
+  .filterbar{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:16px; }
+  .filterbar select, .filterbar input[type="search"]{
+    font:inherit; font-size:13px; padding:8px 11px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface); color:var(--ink); min-width:130px;
+  }
+  .filterbar input[type="search"]{ flex:1; min-width:180px; max-width:270px; }
+  .filterbar .clear{ font:inherit; font-size:12.5px; color:var(--accent); background:none; border:none; cursor:pointer; padding:6px 4px; }
+
+  .okr-block{ background:var(--surface); border:1px solid var(--border); border-radius:12px; margin-bottom:12px; box-shadow:var(--shadow); overflow:hidden; }
+  .okr-block > summary{ list-style:none; cursor:pointer; padding:15px 17px; display:flex; align-items:center; gap:13px; flex-wrap:wrap; }
+  .okr-block > summary::-webkit-details-marker{ display:none; }
+  .okr-block[open] > summary{ border-bottom:1px solid var(--border); background:var(--surface-2); }
+  .okr-summary-main{ flex:1; min-width:200px; }
+  .okr-summary-main .t{ display:block; font-weight:700; font-size:14px; line-height:1.35; }
+  .okr-summary-main .s{ display:block; font-size:11.5px; color:var(--ink-muted); margin-top:3px; }
+  .okr-meter{ display:flex; align-items:center; gap:9px; min-width:150px; }
+  .okr-meter .bar-track{ width:110px; }
+  .okr-meter .pct{ font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; width:40px; text-align:right; }
+  .chevron{ transition:transform .2s ease; color:var(--ink-muted); }
+  .okr-block[open] .chevron{ transform:rotate(180deg); }
+  .okr-body{ padding:17px; }
+  .indicador{ border:1px solid var(--border); border-radius:10px; padding:15px 16px; margin-bottom:14px; background:var(--surface-2); }
+  .indicador:last-of-type{ margin-bottom:10px; }
+  .ind-head{ display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; margin-bottom:6px; }
+  .ind-head .ind-title{ flex:1; min-width:220px; }
+  .ind-meter{ min-width:140px; display:flex; align-items:center; gap:8px; }
+  .ind-meter .bar-track{ width:100px; }
+  .ind-meter .pct{ font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; }
+
+  .add-row{ margin-top:12px; }
+  .empty{ text-align:center; padding:44px 20px; color:var(--ink-muted); font-size:13.5px; }
+
+  /* ---------- confirmação de exclusão ---------- */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(11,31,56,.55); backdrop-filter:blur(2px);
+    display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
+  .modal-overlay[hidden]{ display:none !important; }
+  .modal{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px;
+    max-width:460px; width:100%; box-shadow:0 18px 48px rgba(11,31,56,.28); }
+  .modal h3{ font-size:17px; font-weight:800; margin-bottom:10px; }
+  .modal p{ margin:0; font-size:13.5px; color:var(--ink-2); line-height:1.55; }
+  .modal .modal-detail{ margin-top:12px; padding:11px 13px; border-radius:9px; background:var(--st-late-bg);
+    border:1px solid var(--border); font-size:12.5px; color:var(--st-late); line-height:1.5; }
+  .modal .modal-detail[hidden]{ display:none !important; }
+  .modal-actions{ display:flex; gap:9px; justify-content:flex-end; margin-top:20px; flex-wrap:wrap; }
+  .btn-danger{ font:inherit; font-size:13px; font-weight:700; color:#fff; background:var(--st-late);
+    border:1px solid transparent; border-radius:8px; padding:9px 16px; cursor:pointer; }
+  .btn-danger:hover{ filter:brightness(1.08); }
+  .btn-danger:focus-visible, .ghost-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .ind-actions{ display:flex; justify-content:flex-end; margin-top:6px; }
+  .okr-danger{ margin-top:16px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; }
+  .footer-note{ margin-top:36px; padding-top:18px; border-top:1px solid var(--border); font-size:12px; color:var(--ink-muted); line-height:1.65; }
+  .skeleton{ background:linear-gradient(90deg,var(--grid) 25%,var(--surface-2) 37%,var(--grid) 63%); background-size:400% 100%; animation:sk 1.4s ease infinite; border-radius:8px; }
+  @keyframes sk{ 0%{background-position:100% 0} 100%{background-position:0 0} }
+  @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }
+
+/* ---------- login / firebase ---------- */
+.login-overlay{position:fixed;inset:0;z-index:9000;background:linear-gradient(160deg,#0b2545 0%,#13315c 55%,#1b4079 100%);display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card{background:#fff;border-radius:16px;padding:32px 28px;max-width:420px;width:100%;box-shadow:0 24px 60px rgba(8,20,40,.35);text-align:left}
+.login-card .eyebrow{margin:0 0 6px;font:600 11px/1.3 "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#4a6fa5}
+.login-card h2{margin:0 0 10px;font:800 22px/1.2 Archivo,sans-serif;color:#0b2545}
+.login-card p.msg{margin:0 0 20px;font:400 13.5px/1.55 "IBM Plex Sans",sans-serif;color:#44566c}
+.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px 16px;border:0;border-radius:10px;background:#0b2545;color:#fff;font:600 14px/1 "IBM Plex Sans",sans-serif;cursor:pointer}
+.btn-google:hover{background:#13315c}
+.btn-google:disabled{opacity:.6;cursor:default}
+.btn-google svg{width:18px;height:18px;background:#fff;border-radius:3px;padding:1px}
+.login-erro{margin:16px 0 0;padding:12px 14px;border-radius:10px;background:#fdecec;border:1px solid #f5c2c2;color:#8a1f1f;font:400 12.5px/1.5 "IBM Plex Sans",sans-serif;display:block}
+.login-rodape{margin:18px 0 0;font:400 11.5px/1.5 "IBM Plex Sans",sans-serif;color:#7b8a99}
+.sync-user{display:flex;align-items:center;gap:10px;margin-top:8px;font:400 11.5px/1.3 "IBM Plex Sans",sans-serif;color:rgba(255,255,255,.78)}
+.btn-sair{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:4px 12px;font:600 11px/1 "IBM Plex Sans",sans-serif;cursor:pointer}
+.btn-sair:hover{background:rgba(255,255,255,.14)}
+.barra-import{position:fixed;left:0;right:0;bottom:0;z-index:8000;background:#13315c;color:#fff;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 -6px 24px rgba(8,20,40,.28)}
+.barra-import p{margin:0;font:400 13px/1.5 "IBM Plex Sans",sans-serif;flex:1 1 240px}
+.barra-import button{border:0;border-radius:8px;padding:9px 16px;font:600 13px/1 "IBM Plex Sans",sans-serif;cursor:pointer;background:#fff;color:#0b2545}
+.barra-import button.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+</style>
+
+
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-card">
+    <p class="eyebrow">Compliance · ETIPI</p>
+    <h2>Painel do Plano de Ação 2026</h2>
+    <p class="msg" id="loginMsg">Acesso restrito à equipe de Compliance. Entre com a conta Google autorizada.</p>
+    <button class="btn-google" id="btnLogin" disabled>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.4 5.4 2.5 13.2l7.8 6.1C12.2 13.3 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-2.8-.4-4.1H24v8.4h12.5c-.3 2.1-1.6 5.2-4.6 7.3l7.6 5.9c4.5-4.2 6.6-10.3 6.6-17.5z"/><path fill="#FBBC05" d="M10.3 28.7A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.9l-7.6-5.9c-2 1.4-4.7 2.4-8.3 2.4-6.4 0-11.8-3.8-13.7-9.8l-7.8 6.1C6.4 42.6 14.6 48 24 48z"/></svg>
+      Entrar com Google
+    </button>
+    <p class="login-erro" id="loginErro" hidden></p>
+    <p class="login-rodape">Dados hospedados no Firebase do projeto <strong>compliance-etip-planejamento</strong>. Somente contas cadastradas na coleção <code>usuarios</code> conseguem ler ou gravar.</p>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="inner">
+    <div>
+      <p class="eyebrow">Planejamento Estratégico · Compliance ETIPI</p>
+      <h1>Painel do Plano de Ação 2026</h1>
+      <p class="sub">OKRs, resultados-chave, planos de ação e evidências — editável pela equipe, com recálculo automático.</p>
+    </div>
+    <div>
+      <div class="sync"><span class="dot" id="syncDot"></span><span id="syncText">Conectando…</span></div>
+      <div class="sync-user" id="syncUser" hidden><span id="syncEmail"></span><button class="btn-sair" id="btnSair">Sair</button></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabbar">
+  <div class="inner" role="tablist">
+    <button class="tab" role="tab" data-tab="geral" aria-selected="true">Visão geral</button>
+    <button class="tab" role="tab" data-tab="tri" aria-selected="false">Análise por trimestre</button>
+    <button class="tab" role="tab" data-tab="kr" aria-selected="false">Por resultado-chave</button>
+    <button class="tab" role="tab" data-tab="prazos" aria-selected="false">Próximos prazos<span class="count" id="tabPrazosCount"></span></button>
+    <button class="tab" role="tab" data-tab="plano" aria-selected="false">Plano completo</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="banner" id="banner"></div>
+
+  <!-- ABA 1: VISÃO GERAL -->
+  <section class="tabpanel" id="panel-geral" role="tabpanel">
+    <div class="kpis" id="kpis"></div>
+    <div class="section-head">
+      <h2>Indicadores do plano</h2>
+      <span class="note" id="lastGenerated"></span>
+    </div>
+    <div class="charts">
+      <div class="card"><h3>Conclusão por OKR</h3><div id="chartOkr"></div></div>
+      <div class="card"><h3>Meta planejada × realizado por trimestre</h3><div id="chartQuarter"></div></div>
+    </div>
+    <div class="charts-row2">
+      <div class="card"><h3>Distribuição de status das ações</h3><div id="chartStatus"></div></div>
+      <div class="card"><h3>Ações por responsável</h3><div id="chartResp"></div></div>
+    </div>
+  </section>
+
+  <!-- ABA 2: ANÁLISE POR TRIMESTRE -->
+  <section class="tabpanel" id="panel-tri" role="tabpanel" hidden>
+    <div class="tri-toolbar">
+      <div class="tri-pick">
+        <label for="triQ">Trimestre</label>
+        <select id="triQ">
+          <option value="1">1º trimestre (jan–mar)</option>
+          <option value="2">2º trimestre (abr–jun)</option>
+          <option value="3">3º trimestre (jul–set)</option>
+          <option value="4">4º trimestre (out–dez)</option>
+        </select>
+      </div>
+      <div class="tri-pick">
+        <label for="triKr">Resultado-chave</label>
+        <select id="triKr"><option value="">Todos os resultados-chave</option></select>
+      </div>
+    </div>
+    <div id="triContent"></div>
+  </section>
+
+  <!-- ABA 3: POR RESULTADO-CHAVE -->
+  <section class="tabpanel" id="panel-kr" role="tabpanel" hidden>
+    <div class="kr-layout">
+      <div class="kr-list" id="krList"></div>
+      <div id="krDetail"></div>
+    </div>
+  </section>
+
+  <!-- ABA 3: PRÓXIMOS PRAZOS -->
+  <section class="tabpanel" id="panel-prazos" role="tabpanel" hidden>
+    <div class="prazo-toolbar">
+      <label><input type="checkbox" id="pShowDone"> mostrar também as concluídas</label>
+      <select id="pResp"><option value="">Todos os responsáveis</option></select>
+      <select id="pOkr"><option value="">Todos os OKRs</option></select>
+    </div>
+    <div id="prazosList"></div>
+  </section>
+
+  <!-- ABA 4: PLANO COMPLETO -->
+  <section class="tabpanel" id="panel-plano" role="tabpanel" hidden>
+    <div class="filterbar">
+      <select id="fOkr"><option value="">Todos os OKRs</option></select>
+      <select id="fStatus">
+        <option value="">Todos os status</option>
+        <option value="Pendente">Pendente</option>
+        <option value="Em Andamento">Em Andamento</option>
+        <option value="Concluído">Concluído</option>
+        <option value="Atrasado">Atrasado</option>
+      </select>
+      <select id="fResp"><option value="">Todos os responsáveis</option></select>
+      <input type="search" id="fSearch" placeholder="Buscar por descrição…">
+      <button class="clear" id="fClear">Limpar filtros</button>
+    </div>
+    <div id="okrList"></div>
+    <div class="add-row"><button class="ghost-btn" data-action="add-okr">+ novo OKR</button></div>
+  </section>
+
+  <p class="footer-note">
+    Dados salvos automaticamente e compartilhados em tempo real com a equipe de Compliance da ETIPI. Evidências: cole o link do arquivo já salvo na pasta do Google Drive — o painel exibe o link, não acessa a pasta.
+  </p>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Tem certeza que quer excluir?</h3>
+    <p id="modalMsg"></p>
+    <div class="modal-detail" id="modalDetail" hidden></div>
+    <div class="modal-actions">
+      <button class="ghost-btn" id="modalCancel">Cancelar</button>
+      <button class="btn-danger" id="modalConfirm">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<datalist id="teamList">
+  <option value="Sonara Marques">
+  <option value="Aluisio Holanda">
+  <option value="Marcus Andre">
+  <option value="Isabela Siqueira">
+</datalist>
+
+<script>
+(function(){
+  "use strict";
+
+  var OKR_COLORS = ["var(--okr-1)","var(--okr-2)","var(--okr-3)","var(--okr-4)"];
+  var STATUS_OPTIONS = ["Pendente","Em Andamento","Concluído"];
+  var STATUS_CLASS = {"Concluído":"s-done","Em Andamento":"s-doing","Pendente":"s-todo","Atrasado":"s-late"};
+  var STATUS_COLOR = {"Concluído":"var(--st-done)","Em Andamento":"var(--st-doing)","Pendente":"var(--st-todo)","Atrasado":"var(--st-late)"};
+  var today = new Date(); today.setHours(0,0,0,0);
+
+  var STATE = { okrs:new Map(), indicadores:new Map(), acoes:new Map() };
+  var FILTERS = { okr:"", status:"", resp:"", search:"" };
+  var PRAZO = { showDone:false, resp:"", okr:"" };
+  var TRI = { q:null, kr:"" };
+  var ACTIVE_TAB = "geral";
+  var SELECTED_KR = null;
+  var openState = {};
+  var db = null;
+  var pendingRender = false;
+
+  try{ var savedTab = localStorage.getItem("plano2026.tab"); if(savedTab) ACTIVE_TAB = savedTab; }catch(e){}
+
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function fmtDate(iso){
+    if(!iso) return "—";
+    var p = String(iso).split("-");
+    if(p.length!==3) return iso;
+    return p[2]+"/"+p[1]+"/"+p[0];
+  }
+  function fmtDateShort(iso){
+    if(!iso) return "—";
+    var p = String(iso).split("-");
+    if(p.length!==3) return iso;
+    return p[2]+"/"+p[1];
+  }
+  function parseDate(iso){ if(!iso) return null; var d = new Date(iso+"T00:00:00"); return isNaN(d.getTime())?null:d; }
+  function daysBetween(a,b){ return Math.round((b-a)/86400000); }
+  function fmtPct(x){ return Math.round(x*100)+"%"; }
+  function truncate(s,n){ s = s||""; return s.length>n ? s.slice(0,n-1)+"…" : s; }
+
+  // ---------- domínio ----------
+  function statusOf(a){
+    if(a.subtarefas && a.subtarefas.length){
+      var total = a.subtarefas.length;
+      var done = a.subtarefas.filter(function(s){return s.status==="Concluído";}).length;
+      if(done===0) return "Pendente";
+      if(done===total) return "Concluído";
+      return "Em Andamento";
+    }
+    return a.status || "Pendente";
+  }
+  function progressOf(a){
+    if(a.subtarefas && a.subtarefas.length){
+      var total = a.subtarefas.length;
+      var done = a.subtarefas.filter(function(s){return s.status==="Concluído";}).length;
+      return total ? done/total : 0;
+    }
+    var st = a.status;
+    return st==="Concluído" ? 1 : (st==="Em Andamento" ? 0.5 : 0);
+  }
+  function isAtrasada(a){
+    if(statusOf(a)==="Concluído") return false;
+    var d = parseDate(a.dataTermino);
+    return d ? d < today : false;
+  }
+  function displayStatus(a){ return isAtrasada(a) ? "Atrasado" : statusOf(a); }
+  function stClass(s){ return STATUS_CLASS[s] || "s-todo"; }
+  function stColor(s){ return STATUS_COLOR[s] || "var(--st-todo)"; }
+
+  function allAcoes(){ return Array.from(STATE.acoes.values()); }
+  function allOkrs(){
+    return Array.from(STATE.okrs.values()).sort(function(a,b){
+      return String(a.code||"").localeCompare(String(b.code||""), undefined, {numeric:true});
+    });
+  }
+  function allIndicadores(){
+    var okrOrder = {}; allOkrs().forEach(function(o,i){ okrOrder[o.id]=i; });
+    return Array.from(STATE.indicadores.values()).sort(function(a,b){
+      var d = (okrOrder[a.okrId]||0)-(okrOrder[b.okrId]||0);
+      return d !== 0 ? d : String(a.id).localeCompare(String(b.id));
+    });
+  }
+  function indicadoresOf(okrId){ return allIndicadores().filter(function(i){return i.okrId===okrId;}); }
+  function acoesOf(indId){
+    return allAcoes().filter(function(a){return a.indicadorId===indId;})
+      .sort(function(a,b){ return String(a.dataTermino||"9999").localeCompare(String(b.dataTermino||"9999")); });
+  }
+  function acoesOfOkr(okrId){ return allAcoes().filter(function(a){return a.okrId===okrId;}); }
+  function acoesOrfas(){ return allAcoes().filter(function(a){ return !STATE.indicadores.has(a.indicadorId); }); }
+  function okrIndex(okrId){ var l = allOkrs(); for(var i=0;i<l.length;i++){ if(l[i].id===okrId) return i; } return 0; }
+  function okrColorOf(okrId){ return OKR_COLORS[okrIndex(okrId) % OKR_COLORS.length]; }
+  function avgProgress(list){ return list.length ? list.reduce(function(s,a){return s+progressOf(a);},0)/list.length : 0; }
+  function respName(a){ return (a.responsavel && a.responsavel.trim()) ? a.responsavel.trim() : "Não atribuído"; }
+
+  function krLabel(ind){
+    if(!ind) return "Resultado-chave";
+    return ind.nomeCurto || ind.meta2026 || ind.descricao || "Resultado-chave";
+  }
+  function nomeCurtoField(ind){
+    return '<div style="margin-bottom:12px"><span class="field-label">Nome curto do resultado-chave</span>'+
+      '<input type="text" class="editable nc-input" value="'+esc(ind.nomeCurto||"")+'" placeholder="ex.: Due Diligence, Governança/ESG" data-kind="ind-nome" data-id="'+esc(ind.id)+'"></div>';
+  }
+
+  function etapaStats(a){
+    var subs = a.subtarefas || [];
+    return { total: subs.length, done: subs.filter(function(s){return s.status==="Concluído";}).length };
+  }
+
+  // ---------- trimestres ----------
+  var Q_NAMES = {1:"1º trimestre", 2:"2º trimestre", 3:"3º trimestre", 4:"4º trimestre"};
+  var Q_MONTHS = {1:"jan–mar", 2:"abr–jun", 3:"jul–set", 4:"out–dez"};
+
+  function planYear(){
+    var years = {};
+    allAcoes().forEach(function(a){
+      [a.dataInicio, a.dataTermino].forEach(function(d){
+        if(d && d.length>=4){ var y = d.slice(0,4); years[y] = (years[y]||0)+1; }
+      });
+    });
+    var best = null, bestN = 0;
+    Object.keys(years).forEach(function(y){ if(years[y]>bestN){ best=y; bestN=years[y]; } });
+    return best ? parseInt(best,10) : today.getFullYear();
+  }
+  function quarterOfDate(iso){
+    var d = parseDate(iso);
+    return d ? Math.floor(d.getMonth()/3)+1 : null;
+  }
+  function quarterBounds(q, year){
+    var start = new Date(year, (q-1)*3, 1);
+    var end = new Date(year, q*3, 0);
+    return {start:start, end:end};
+  }
+  function fmtBounds(q, year){
+    var b = quarterBounds(q, year);
+    var f = function(d){ return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear(); };
+    return f(b.start)+" a "+f(b.end);
+  }
+  /** trimestre da ação: manual (a.trimestre) ou deduzido da data de término */
+  function acaoQuarter(a){
+    if(a.trimestre) return parseInt(String(a.trimestre).replace("T",""),10) || null;
+    return quarterOfDate(a.dataTermino);
+  }
+  function acaoQuarterIsAuto(a){ return !a.trimestre; }
+  /** trimestre da etapa: manual (s.trimestre) ou deduzido da data de término da etapa */
+  function etapaQuarter(s){
+    if(s.trimestre) return parseInt(String(s.trimestre).replace("T",""),10) || null;
+    return quarterOfDate(s.dataTermino);
+  }
+  function etapasOfQuarter(a, q){
+    return (a.subtarefas||[]).filter(function(s){ return etapaQuarter(s)===q; });
+  }
+  function etapasSemTrimestre(a){
+    return (a.subtarefas||[]).filter(function(s){ return !etapaQuarter(s); });
+  }
+  /** a ação atravessa o trimestre (estava em execução no período)? */
+  function acaoSpansQuarter(a, q, year){
+    var b = quarterBounds(q, year);
+    var ini = parseDate(a.dataInicio), fim = parseDate(a.dataTermino);
+    if(!ini && !fim) return false;
+    var start = ini || fim, end = fim || ini;
+    return start <= b.end && end >= b.start;
+  }
+  function currentQuarter(){ return Math.floor(today.getMonth()/3)+1; }
+
+  // ---------- KPIs ----------
+  function renderKPIs(){
+    var acoes = allAcoes();
+    var total = acoes.length;
+    var concluidas = acoes.filter(function(a){return statusOf(a)==="Concluído";}).length;
+    var atrasadas = acoes.filter(isAtrasada).length;
+    var progresso = avgProgress(acoes);
+    // o próximo prazo olha só para frente: o que já venceu está no cartão de atrasadas
+    var pend = acoes.filter(function(a){
+      if(statusOf(a)==="Concluído" || !a.dataTermino) return false;
+      var d = parseDate(a.dataTermino);
+      return d && d >= today;
+    }).sort(function(a,b){ return String(a.dataTermino).localeCompare(String(b.dataTermino)); });
+    var prox = pend[0];
+    var proxVal = "—", proxSub = atrasadas ? "nenhum prazo futuro em aberto" : "sem prazos pendentes";
+    if(prox){
+      var okr = STATE.okrs.get(prox.okrId);
+      var dias = daysBetween(today, parseDate(prox.dataTermino));
+      var quando = dias===0 ? "vence hoje" : dias===1 ? "vence amanhã" : "em "+dias+" dias";
+      proxVal = fmtDate(prox.dataTermino);
+      proxSub = quando + " · " + (okr ? okr.code+" · " : "") + truncate(prox.descricao, 30);
+    }
+    var html = "";
+    html += '<div class="tile hero"><div class="label">Progresso geral do plano</div><div class="value tabular">'+fmtPct(progresso)+'</div><div class="sub">'+(total? concluidas+" de "+total+" ações concluídas" : "sem ações cadastradas")+'</div></div>';
+    html += '<div class="tile"><div class="label">Ações concluídas</div><div class="value tabular">'+concluidas+" / "+total+'</div><div class="sub">'+(total? Math.round(concluidas/total*100)+"% do total de ações":"")+'</div></div>';
+    html += '<div class="tile"><div class="label">Ações atrasadas</div><div class="value tabular'+(atrasadas?" late":"")+'">'+atrasadas+'</div><div class="sub">'+(atrasadas? "prazo vencido e não concluídas":"nenhuma ação em atraso")+'</div></div>';
+    html += '<div class="tile"><div class="label">Próximo prazo</div><div class="value tabular" style="font-size:26px">'+proxVal+'</div><div class="sub">'+esc(proxSub)+'</div></div>';
+    document.getElementById("kpis").innerHTML = html;
+  }
+
+  // ---------- gráficos ----------
+  function renderCharts(){ renderOkrChart(); renderQuarterChart(); renderStatusChart(); renderRespChart(); }
+
+  function renderOkrChart(){
+    var okrs = allOkrs(), el = document.getElementById("chartOkr");
+    if(!okrs.length){ el.innerHTML = '<div class="empty" style="padding:20px">Nenhum OKR cadastrado.</div>'; return; }
+    el.innerHTML = okrs.map(function(okr){
+      var p = avgProgress(acoesOfOkr(okr.id));
+      return '<div class="bar-row"><span class="rlabel mono">'+esc(okr.code)+'</span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+okrColorOf(okr.id)+'"></span></span>'+
+        '<span class="rval">'+fmtPct(p)+'</span></div>';
+    }).join("");
+  }
+
+  function renderQuarterChart(){
+    var inds = allIndicadores(), el = document.getElementById("chartQuarter");
+    if(!inds.length){ el.innerHTML = '<div class="empty" style="padding:20px">Nenhum indicador cadastrado.</div>'; return; }
+    var qs = [1,2,3,4].map(function(n){
+      var vals = inds.map(function(i){ return i["metaQ"+n]; }).filter(function(v){ return typeof v === "number"; });
+      return vals.length ? vals.reduce(function(a,b){return a+b;},0)/vals.length : 0;
+    });
+    var atual = avgProgress(allAcoes());
+    var curQ = Math.floor(today.getMonth()/3)+1;
+    var barAreaH = 96, valRowH = 18;
+    var refTop = valRowH + (barAreaH - atual*barAreaH);
+    var qcolors = ["var(--q-1)","var(--q-2)","var(--q-3)","var(--q-4)"];
+    var cols = "";
+    for(var n=1;n<=4;n++){
+      var h = Math.max(3, Math.round(qs[n-1]*barAreaH));
+      var lab = "T"+n + (n===curQ ? " (atual)" : (n===4 ? " · meta anual" : ""));
+      cols += '<div class="qcol'+(n===curQ?" current":"")+'">'+
+        '<span class="qval tabular">'+fmtPct(qs[n-1])+'</span>'+
+        '<div class="qbar-area"><div class="qbar" style="height:'+h+'px;background:'+qcolors[n-1]+'"></div></div>'+
+        '<span class="qlab">'+lab+'</span></div>';
+    }
+    el.innerHTML = '<div class="qchart"><div class="refline" style="top:'+Math.max(0,Math.round(refTop))+'px"></div>'+cols+'</div>'+
+      '<div class="qchart-legend">'+
+        '<span><span class="sw" style="background:var(--q-3)"></span>Meta acumulada planejada</span>'+
+        '<span><span class="ln"></span>Progresso real atual: <b class="tabular">'+fmtPct(atual)+'</b></span>'+
+      '</div>';
+  }
+
+  function renderStatusChart(){
+    var acoes = allAcoes(), el = document.getElementById("chartStatus");
+    if(!acoes.length){ el.innerHTML = '<div class="empty" style="padding:20px">Nenhuma ação cadastrada.</div>'; return; }
+    var order = ["Concluído","Em Andamento","Pendente","Atrasado"];
+    var g = {"Concluído":0,"Em Andamento":0,"Pendente":0,"Atrasado":0};
+    acoes.forEach(function(a){ g[displayStatus(a)]++; });
+    var bar = order.filter(function(k){return g[k];}).map(function(k){
+      return '<div style="width:'+(g[k]/acoes.length*100)+'%;background:'+stColor(k)+'" title="'+k+': '+g[k]+'"></div>';
+    }).join("");
+    var legend = order.map(function(k){
+      return '<span class="item"><span class="sw" style="background:'+stColor(k)+'"></span>'+k+' <b>'+g[k]+'</b></span>';
+    }).join("");
+    el.innerHTML = '<div class="status-bar">'+bar+'</div><div class="status-legend">'+legend+'</div>';
+  }
+
+  function renderRespChart(){
+    var acoes = allAcoes(), el = document.getElementById("chartResp");
+    if(!acoes.length){ el.innerHTML = '<div class="empty" style="padding:20px">Nenhuma ação cadastrada.</div>'; return; }
+    var counts = {};
+    acoes.forEach(function(a){ var r = respName(a); counts[r] = (counts[r]||0)+1; });
+    var entries = Object.keys(counts).map(function(k){return [k,counts[k]];}).sort(function(a,b){return b[1]-a[1];});
+    var max = entries[0][1];
+    el.innerHTML = entries.map(function(e){
+      var muted = e[0]==="Não atribuído";
+      return '<div class="resp-row"><span class="rname" title="'+esc(e[0])+'">'+esc(e[0])+'</span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(e[1]/max*100)+'%;background:'+(muted?"var(--ink-muted)":"var(--blue-500)")+'"></span></span>'+
+        '<span class="rcount tabular">'+e[1]+'</span></div>';
+    }).join("");
+  }
+
+  // ---------- blocos reutilizáveis ----------
+  function statusControl(a){
+    var st = displayStatus(a);
+    var hasSubs = a.subtarefas && a.subtarefas.length;
+    if(hasSubs){
+      var s = etapaStats(a);
+      return '<span class="chip '+stClass(st)+'">'+esc(st)+'</span>'+
+        '<span class="chip s-todo" style="background:var(--surface-3)" title="etapas concluídas">'+s.done+'/'+s.total+' etapas</span>';
+    }
+    var html = '<select class="status-select '+stClass(a.status||"Pendente")+'" data-kind="acao-status" data-id="'+esc(a.id)+'">'+
+      STATUS_OPTIONS.map(function(o){ return '<option value="'+o+'"'+((a.status||"Pendente")===o?" selected":"")+'>'+o+'</option>'; }).join("")+
+      '</select>';
+    if(st==="Atrasado") html += '<span class="chip s-late">Atrasado</span>';
+    return html;
+  }
+
+  function etapaQuarterSelect(a, sub){
+    var cur = sub.trimestre || "";
+    var opts = '<option value="">— T?</option>' + [1,2,3,4].map(function(n){
+      return '<option value="T'+n+'"'+(cur==="T"+n?" selected":"")+'>T'+n+'</option>';
+    }).join("");
+    var q = etapaQuarter(sub);
+    var cls = q ? "" : " unset";
+    var title = cur ? "trimestre da etapa" : (q ? "trimestre deduzido da data da etapa" : "defina o trimestre desta etapa");
+    return '<select class="q-select'+cls+'" data-kind="sub-trimestre" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'" title="'+title+'" aria-label="trimestre da etapa">'+opts+'</select>';
+  }
+
+  function acaoQuarterSelect(a){
+    var cur = a.trimestre || "";
+    var auto = quarterOfDate(a.dataTermino);
+    var autoLabel = auto ? "Automático (T"+auto+")" : "Automático (sem data)";
+    var opts = '<option value="">'+autoLabel+'</option>' + [1,2,3,4].map(function(n){
+      return '<option value="T'+n+'"'+(cur==="T"+n?" selected":"")+'>T'+n+'</option>';
+    }).join("");
+    return '<select data-kind="acao-trimestre" data-id="'+esc(a.id)+'">'+opts+'</select>';
+  }
+
+  function etapasBlock(a){
+    var subs = a.subtarefas || [];
+    if(!subs.length) return "";
+    var s = etapaStats(a);
+    var p = s.total ? s.done/s.total : 0;
+    var rows = subs.map(function(sub){
+      var done = sub.status==="Concluído";
+      return '<div class="et-row'+(done?" done":"")+'">'+
+        '<input type="checkbox" data-kind="sub-check" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'"'+(done?" checked":"")+' aria-label="concluir etapa">'+
+        '<input type="text" class="et-desc" value="'+esc(sub.descricao)+'" data-kind="sub-desc" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'">'+
+        etapaQuarterSelect(a, sub)+
+        '<input type="url" class="et-link" placeholder="link da evidência" value="'+esc(sub.linkEvidencia||"")+'" data-kind="sub-link" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'">'+
+        '<button class="danger-btn" data-action="del-sub" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'" title="excluir etapa">✕</button>'+
+        '</div>';
+    }).join("");
+    return '<div class="etapas">'+
+      '<div class="etapas-head"><span class="et-label">Etapas da ação</span>'+
+        '<span class="et-prog"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+(p===1?"var(--st-done)":"var(--st-doing)")+'"></span></span><span class="pct">'+s.done+'/'+s.total+'</span></span>'+
+      '</div>'+ rows +
+      '<button class="ghost-btn" data-action="add-sub" data-id="'+esc(a.id)+'">+ nova etapa</button>'+
+      '</div>';
+  }
+
+  function acaoCard(a, opts){
+    opts = opts || {};
+    var st = displayStatus(a);
+    var cls = st==="Atrasado" ? "late" : st==="Concluído" ? "done" : st==="Em Andamento" ? "doing" : "todo";
+    var q = acaoQuarter(a);
+    var html = '<div class="acao '+cls+'" data-acao="'+esc(a.id)+'">';
+    html += '<div class="acao-top"><span class="acao-status">'+statusControl(a)+
+      (q ? '<span class="q-badge'+(acaoQuarterIsAuto(a)?" auto":"")+'" title="'+(acaoQuarterIsAuto(a)?"trimestre deduzido da data de término":"trimestre definido manualmente")+'">T'+q+'</span>' : "")+
+      '</span>'+
+      '<textarea class="editable" data-kind="acao-descricao" data-id="'+esc(a.id)+'" rows="1">'+esc(a.descricao)+'</textarea></div>';
+    html += '<div class="acao-grid">'+
+      '<div class="acao-field"><label>Início</label><input type="date" value="'+esc(a.dataInicio||"")+'" data-kind="acao-inicio" data-id="'+esc(a.id)+'"></div>'+
+      '<div class="acao-field"><label>Término</label><input type="date" value="'+esc(a.dataTermino||"")+'" data-kind="acao-termino" data-id="'+esc(a.id)+'"></div>'+
+      '<div class="acao-field"><label>Trimestre de entrega</label>'+acaoQuarterSelect(a)+'</div>'+
+      '<div class="acao-field"><label>Responsável</label><input type="text" list="teamList" value="'+esc(a.responsavel||"")+'" placeholder="Não atribuído" data-kind="acao-resp" data-id="'+esc(a.id)+'"></div>'+
+      '<div class="acao-field" style="grid-column:1/-1"><label>Link da evidência (Google Drive)</label><input type="url" value="'+esc(a.linkEvidencia||"")+'" placeholder="https://drive.google.com/…" data-kind="acao-link" data-id="'+esc(a.id)+'"></div>'+
+      '</div>';
+    html += '<div class="acao-actions">';
+    if(a.linkEvidencia) html += '<a class="linkbtn" href="'+esc(a.linkEvidencia)+'" target="_blank" rel="noopener">Ver evidência ↗</a>';
+    if(!(a.subtarefas && a.subtarefas.length)) html += '<button class="ghost-btn" data-action="split-acao" data-id="'+esc(a.id)+'">Dividir em etapas</button>';
+    html += '<button class="danger-btn" data-action="del-acao" data-id="'+esc(a.id)+'">Excluir ação</button>';
+    html += '</div>';
+    html += etapasBlock(a);
+    html += '</div>';
+    return html;
+  }
+
+  function metaAnualBlock(ind){
+    var qt = "";
+    [1,2,3,4].forEach(function(n){
+      var v = ind["metaQ"+n];
+      if(typeof v === "number") qt += '<span class="qt'+(n===4?" anual":"")+'">T'+n+": "+fmtPct(v)+"</span>";
+    });
+    var html = '<div class="meta-anual"><span class="ma-label">Meta anual · 2026</span>'+
+      '<textarea data-kind="ind-meta2026" data-id="'+esc(ind.id)+'" rows="2" placeholder="Descreva a meta a ser atingida em 2026">'+esc(ind.meta2026||"")+'</textarea></div>';
+    html += '<div class="baseline-row"><label>Linha de base</label>'+
+      '<input type="text" value="'+esc(ind.linhaBase||"")+'" placeholder="ponto de partida em 2026" data-kind="ind-linhabase" data-id="'+esc(ind.id)+'"></div>';
+    if(qt) html += '<div class="qtargets"><span class="qt-label">Metas acumuladas</span>'+qt+'</div>';
+    return html;
+  }
+
+  // ---------- ABA 2: por resultado-chave ----------
+  function renderKrView(){
+    var inds = allIndicadores();
+    var listEl = document.getElementById("krList"), detEl = document.getElementById("krDetail");
+    if(!inds.length){
+      listEl.innerHTML = "";
+      detEl.innerHTML = '<div class="card"><div class="empty">Nenhum resultado-chave cadastrado. Cadastre pelo “Plano completo”.</div></div>';
+      return;
+    }
+    if(!SELECTED_KR || !STATE.indicadores.has(SELECTED_KR)) SELECTED_KR = inds[0].id;
+
+    var lastOkr = null, listHtml = "";
+    inds.forEach(function(ind){
+      var okr = STATE.okrs.get(ind.okrId);
+      if(okr && okr.id !== lastOkr){
+        listHtml += '<div class="kr-group-label">'+esc(okr.code)+" · "+esc(truncate(okr.title,34))+'</div>';
+        lastOkr = okr.id;
+      }
+      var acoes = acoesOf(ind.id);
+      var p = avgProgress(acoes);
+      var atrasadas = acoes.filter(isAtrasada).length;
+      var color = okrColorOf(ind.okrId);
+      listHtml += '<button class="kr-item" data-action="select-kr" data-id="'+esc(ind.id)+'" aria-current="'+(ind.id===SELECTED_KR)+'" style="border-left-color:'+(ind.id===SELECTED_KR?"var(--blue-500)":color)+'">'+
+        '<span class="kr-t">'+esc(truncate(krLabel(ind), 76))+'</span>'+
+        '<span class="kr-m"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+color+'"></span></span><span class="pct">'+fmtPct(p)+'</span></span>'+
+        '<span class="kr-s">'+acoes.length+' ação(ões)'+(atrasadas? " · "+atrasadas+" em atraso":"")+'</span>'+
+        '</button>';
+    });
+    listEl.innerHTML = listHtml;
+
+    var ind = STATE.indicadores.get(SELECTED_KR);
+    var okr = STATE.okrs.get(ind.okrId);
+    var acoes = acoesOf(ind.id);
+    var p = avgProgress(acoes);
+    var concl = acoes.filter(function(a){return statusOf(a)==="Concluído";}).length;
+    var atras = acoes.filter(isAtrasada).length;
+    var etTot = acoes.reduce(function(s,a){ return s+etapaStats(a).total; },0);
+    var etDone = acoes.reduce(function(s,a){ return s+etapaStats(a).done; },0);
+    var color = okrColorOf(ind.okrId);
+
+    var html = '<div class="card">';
+    html += '<div class="kr-detail-head">'+
+      '<span class="okr-chip" style="background:'+color+'">'+esc(okr?okr.code:"—")+'</span>'+
+      '<span class="okr-t">'+esc(krLabel(ind))+'<span class="okr-sub">'+esc(okr?okr.title:"")+'</span></span>'+
+      '<span class="okr-meter"><span class="bar-track" style="width:100px"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+color+'"></span></span><span class="pct">'+fmtPct(p)+'</span></span>'+
+      '</div>';
+    if(okr){
+      html += '<div style="margin-top:12px"><span class="field-label">Plano de ação (visão geral do OKR)</span>'+
+        '<textarea class="editable" data-kind="okr-plano" data-id="'+esc(okr.id)+'" rows="2">'+esc(okr.planoAcao||"")+'</textarea></div>';
+    }
+    html += nomeCurtoField(ind);
+    html += metaAnualBlock(ind);
+    html += '<div><span class="field-label">Indicador do resultado-chave</span>'+
+      '<textarea class="editable" data-kind="ind-descricao" data-id="'+esc(ind.id)+'" rows="2">'+esc(ind.descricao||"")+'</textarea></div>';
+    html += '<div class="kr-stats">'+
+      '<div class="kr-stat"><div class="n tabular">'+fmtPct(p)+'</div><div class="l">Progresso</div></div>'+
+      '<div class="kr-stat"><div class="n tabular">'+concl+"/"+acoes.length+'</div><div class="l">Ações concluídas</div></div>'+
+      '<div class="kr-stat"><div class="n tabular"'+(atras?' style="color:var(--st-late)"':"")+'>'+atras+'</div><div class="l">Em atraso</div></div>'+
+      '<div class="kr-stat"><div class="n tabular">'+(etTot? etDone+"/"+etTot : "—")+'</div><div class="l">Etapas concluídas</div></div>'+
+      '</div>';
+    html += '</div>';
+
+    html += '<div class="section-head"><h2>Planos de ação deste resultado-chave</h2><span class="note">'+acoes.length+' ação(ões), com todas as etapas visíveis</span></div>';
+    html += '<div class="acoes-list">';
+    html += acoes.length ? acoes.map(function(a){ return acaoCard(a); }).join("") : '<div class="card"><div class="empty">Nenhuma ação cadastrada neste resultado-chave.</div></div>';
+    html += '</div>';
+    html += '<div class="add-row" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">'+
+      '<button class="ghost-btn" data-action="add-acao" data-ind="'+esc(ind.id)+'">+ nova ação neste resultado-chave</button>'+
+      '<button class="danger-btn" data-action="del-indicador" data-id="'+esc(ind.id)+'">Excluir este resultado-chave</button>'+
+      '</div>';
+    detEl.innerHTML = html;
+  }
+
+  // ---------- ABA: análise por trimestre ----------
+  function renderTrimestre(){
+    var el = document.getElementById("triContent");
+    var q = TRI.q, year = planYear();
+    var inds = allIndicadores();
+    if(!inds.length){ el.innerHTML = '<div class="card"><div class="empty">Nenhum resultado-chave cadastrado.</div></div>'; return; }
+
+    var scopeInds = TRI.kr ? inds.filter(function(i){ return i.id===TRI.kr; }) : inds;
+    var scopeIndIds = {}; scopeInds.forEach(function(i){ scopeIndIds[i.id]=true; });
+    var scopeAcoes = allAcoes().filter(function(a){ return scopeIndIds[a.indicadorId]; });
+
+    // entregas previstas para o trimestre
+    var entregas = scopeAcoes.filter(function(a){ return acaoQuarter(a)===q; });
+    // ações em execução no período, mas com entrega em outro trimestre
+    var emExecucao = scopeAcoes.filter(function(a){
+      return acaoQuarter(a)!==q && acaoSpansQuarter(a, q, year);
+    });
+    // etapas marcadas para o trimestre (em qualquer ação do escopo)
+    var etapasQ = [];
+    scopeAcoes.forEach(function(a){
+      etapasOfQuarter(a, q).forEach(function(s){ etapasQ.push({acao:a, sub:s}); });
+    });
+    var etapasSemQ = [];
+    scopeAcoes.forEach(function(a){
+      etapasSemTrimestre(a).forEach(function(s){ etapasSemQ.push({acao:a, sub:s}); });
+    });
+
+    var entregasDone = entregas.filter(function(a){ return statusOf(a)==="Concluído"; }).length;
+    var etapasDone = etapasQ.filter(function(x){ return x.sub.status==="Concluído"; }).length;
+    var totalItens = entregas.length + etapasQ.length;
+    var doneItens = entregasDone + etapasDone;
+    var realizado = totalItens ? doneItens/totalItens : 0;
+    var atrasadasQ = entregas.filter(isAtrasada).length;
+
+    var metaVals = scopeInds.map(function(i){ return i["metaQ"+q]; }).filter(function(v){ return typeof v === "number"; });
+    var meta = metaVals.length ? metaVals.reduce(function(a,b){return a+b;},0)/metaVals.length : null;
+
+    var scopeLabel = TRI.kr
+      ? (function(){ var i = STATE.indicadores.get(TRI.kr); var o = i && STATE.okrs.get(i.okrId);
+          return (o? o.code+" · " : "") + truncate(krLabel(i), 70); })()
+      : "Todos os resultados-chave (" + inds.length + " KRs)";
+
+    var html = "";
+    // cabeçalho do trimestre
+    html += '<div class="tri-head"><div class="th-top"><h2>'+Q_NAMES[q]+' de '+year+'</h2>'+
+      '<span class="th-period">'+esc(fmtBounds(q, year))+' · '+Q_MONTHS[q]+'</span></div>'+
+      '<div class="th-scope">'+esc(scopeLabel)+'</div>'+
+      '<div class="th-figs">'+
+        '<div class="th-fig"><div class="n tabular">'+fmtPct(realizado)+'</div><div class="l">Conclusão do trimestre</div></div>'+
+        '<div class="th-fig"><div class="n tabular">'+doneItens+" / "+totalItens+'</div><div class="l">Itens realizados</div></div>'+
+        '<div class="th-fig"><div class="n tabular">'+entregasDone+" / "+entregas.length+'</div><div class="l">Ações entregues</div></div>'+
+        '<div class="th-fig"><div class="n tabular">'+etapasDone+" / "+etapasQ.length+'</div><div class="l">Etapas concluídas</div></div>'+
+        (atrasadasQ ? '<div class="th-fig"><div class="n tabular" style="color:#ffb4b4">'+atrasadasQ+'</div><div class="l">Em atraso</div></div>' : "")+
+      '</div></div>';
+
+    // meta x realizado
+    html += '<div class="charts"><div class="card"><h3>Meta planejada × realizado no trimestre</h3>';
+    if(meta===null){
+      html += '<div class="empty" style="padding:16px 0">Este resultado-chave não tem meta definida para o '+Q_NAMES[q]+'.</div>';
+    } else {
+      html += '<div class="cmp-row"><span class="cl">Meta planejada</span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(meta*100)+'%;background:var(--blue-300)"></span></span>'+
+        '<span class="cv">'+fmtPct(meta)+'</span></div>';
+      html += '<div class="cmp-row"><span class="cl">Realizado</span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(realizado*100)+'%;background:'+(realizado>=meta?"var(--st-done)":"var(--st-doing)")+'"></span></span>'+
+        '<span class="cv">'+fmtPct(realizado)+'</span></div>';
+      var diff = Math.round((realizado-meta)*100);
+      html += '<p class="cmp-note">'+(diff>=0
+        ? 'O realizado está <b>'+diff+' ponto(s) percentual(is) acima</b> da meta acumulada prevista para o trimestre.'
+        : 'O realizado está <b>'+Math.abs(diff)+' ponto(s) percentual(is) abaixo</b> da meta acumulada prevista para o trimestre.')+
+        ' A meta acumulada vem do campo “Metas acumuladas” do resultado-chave; o realizado considera as ações com entrega prevista neste trimestre e as etapas marcadas para ele.</p>';
+    }
+    html += '</div>';
+
+    // conclusão por KR no trimestre
+    html += '<div class="card"><h3>Conclusão no trimestre por resultado-chave</h3>';
+    var perKr = scopeInds.map(function(i){
+      var acs = acoesOf(i.id);
+      var ent = acs.filter(function(a){ return acaoQuarter(a)===q; });
+      var eta = []; acs.forEach(function(a){ etapasOfQuarter(a,q).forEach(function(s){ eta.push(s); }); });
+      var tot = ent.length + eta.length;
+      var dn = ent.filter(function(a){return statusOf(a)==="Concluído";}).length + eta.filter(function(s){return s.status==="Concluído";}).length;
+      var okr = STATE.okrs.get(i.okrId);
+      return { label:(okr?okr.code:"—"), title:krLabel(i), total:tot, done:dn, pct: tot? dn/tot : 0, color: okrColorOf(i.okrId) };
+    }).filter(function(r){ return r.total > 0; });
+    if(!perKr.length){
+      html += '<div class="empty" style="padding:16px 0">Nenhuma entrega ou etapa está marcada para o '+Q_NAMES[q]+' neste escopo.</div>';
+    } else {
+      html += perKr.map(function(r){
+        return '<div class="bar-row" title="'+esc(r.title)+'"><span class="rlabel mono">'+esc(r.label)+'</span>'+
+          '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(r.pct*100)+'%;background:'+r.color+'"></span></span>'+
+          '<span class="rval">'+r.done+"/"+r.total+'</span></div>';
+      }).join("");
+      if(perKr.length < scopeInds.length){
+        html += '<p class="cmp-note"><b>'+perKr.length+' de '+scopeInds.length+'</b> resultado(s)-chave têm entrega ou etapa marcada para o '+Q_NAMES[q]+'. Os demais não aparecem no gráfico porque nada foi previsto neles para o período — vale conferir se é intencional antes da reunião.</p>';
+      }
+    }
+    html += '</div></div>';
+
+    // entregas do trimestre
+    html += '<div class="tri-section-title">Entregas previstas para o '+Q_NAMES[q]+' <span class="n">'+entregas.length+' ação(ões)</span></div>';
+    html += '<p class="tri-section-sub">Ações cujo trimestre de entrega é o '+Q_NAMES[q]+' — é o que você apresenta como entrega do período.</p>';
+    if(!entregas.length){
+      html += '<div class="card"><div class="empty">Nenhuma ação com entrega prevista para este trimestre.</div></div>';
+    } else {
+      entregas.sort(function(a,b){ return String(a.dataTermino||"9999").localeCompare(String(b.dataTermino||"9999")); });
+      html += entregas.map(function(a){ return triItem(a, q, true); }).join("");
+    }
+
+    // em execução
+    if(emExecucao.length){
+      html += '<div class="tri-section-title">Em execução durante o trimestre <span class="n">'+emExecucao.length+' ação(ões)</span></div>';
+      html += '<p class="tri-section-sub">Ações que estavam em andamento no período, mas cuja entrega está prevista para outro trimestre. As etapas marcadas para o '+Q_NAMES[q]+' aparecem abaixo de cada uma.</p>';
+      emExecucao.sort(function(a,b){ return String(a.dataTermino||"9999").localeCompare(String(b.dataTermino||"9999")); });
+      html += emExecucao.map(function(a){ return triItem(a, q, false); }).join("");
+    }
+
+    // etapas sem trimestre
+    if(etapasSemQ.length){
+      html += '<div class="tri-section-title">Etapas sem trimestre definido <span class="n">'+etapasSemQ.length+' etapa(s)</span></div>';
+      html += '<p class="tri-section-sub">Estas etapas ainda não entram em nenhuma análise trimestral. Defina o trimestre de cada uma no seletor ao lado — a análise se refaz na hora.</p>';
+      var byAcao = {};
+      etapasSemQ.forEach(function(x){ (byAcao[x.acao.id] = byAcao[x.acao.id] || {acao:x.acao, subs:[]}).subs.push(x.sub); });
+      html += Object.keys(byAcao).map(function(k){
+        var g = byAcao[k];
+        return '<div class="tri-item todo"><div class="ti-desc">'+esc(g.acao.descricao)+'</div>'+
+          '<div class="tri-etapas"><span class="et-label">Etapas sem trimestre</span>'+
+          g.subs.map(function(s){ return etapaRowHtml(g.acao, s); }).join("")+'</div></div>';
+      }).join("");
+    }
+
+    el.innerHTML = html;
+  }
+
+  function etapaRowHtml(a, sub){
+    var done = sub.status==="Concluído";
+    return '<div class="et-row'+(done?" done":"")+'">'+
+      '<input type="checkbox" data-kind="sub-check" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'"'+(done?" checked":"")+' aria-label="concluir etapa">'+
+      '<input type="text" class="et-desc" value="'+esc(sub.descricao)+'" data-kind="sub-desc" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'">'+
+      etapaQuarterSelect(a, sub)+
+      '<input type="url" class="et-link" placeholder="link da evidência" value="'+esc(sub.linkEvidencia||"")+'" data-kind="sub-link" data-id="'+esc(a.id)+'" data-sub="'+esc(sub.id)+'">'+
+      '</div>';
+  }
+
+  function triItem(a, q, isEntrega){
+    var st = displayStatus(a);
+    var cls = st==="Atrasado" ? "late" : st==="Concluído" ? "done" : st==="Em Andamento" ? "doing" : "todo";
+    var okr = STATE.okrs.get(a.okrId);
+    var etapas = etapasOfQuarter(a, q);
+    var etDone = etapas.filter(function(s){return s.status==="Concluído";}).length;
+    var html = '<div class="tri-item '+cls+'" data-acao="'+esc(a.id)+'">';
+    html += '<div class="ti-top">'+statusControl(a)+
+      '<span class="okr-chip" style="background:'+okrColorOf(a.okrId)+'">'+esc(okr?okr.code:"—")+'</span>'+
+      (isEntrega ? "" : '<span class="q-badge">entrega em T'+(acaoQuarter(a)||"?")+'</span>')+
+      '</div>';
+    html += '<div class="ti-desc">'+esc(a.descricao)+'</div>';
+    html += '<div class="ti-meta">'+
+      '<span>Prazo: <b>'+fmtDate(a.dataTermino)+'</b></span>'+
+      '<span>Responsável: <b>'+esc(respName(a))+'</b></span>'+
+      (etapas.length ? '<span>Etapas no trimestre: <b>'+etDone+"/"+etapas.length+'</b></span>' : "")+
+      (a.linkEvidencia ? '<span><a class="linkbtn" href="'+esc(a.linkEvidencia)+'" target="_blank" rel="noopener">Ver evidência ↗</a></span>' : '<span style="color:var(--st-doing)">sem evidência anexada</span>')+
+      '</div>';
+    if(etapas.length){
+      html += '<div class="tri-etapas"><span class="et-label">Etapas previstas para o '+Q_NAMES[q]+'</span>'+
+        etapas.map(function(s){ return etapaRowHtml(a, s); }).join("")+'</div>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function renderTriOptions(){
+    var sel = document.getElementById("triKr"), cur = sel.value;
+    var lastOkr = null, html = '<option value="">Todos os resultados-chave</option>';
+    allIndicadores().forEach(function(i){
+      var okr = STATE.okrs.get(i.okrId);
+      if(okr && okr.id!==lastOkr){
+        if(lastOkr!==null) html += '</optgroup>';
+        html += '<optgroup label="'+esc(okr.code+" · "+truncate(okr.title,40))+'">';
+        lastOkr = okr.id;
+      }
+      html += '<option value="'+esc(i.id)+'">'+esc(truncate(krLabel(i), 60))+'</option>';
+    });
+    if(lastOkr!==null) html += '</optgroup>';
+    sel.innerHTML = html;
+    sel.value = STATE.indicadores.has(cur) ? cur : "";
+    document.getElementById("triQ").value = String(TRI.q);
+  }
+
+  // ---------- ABA 3: próximos prazos ----------
+  function renderPrazos(){
+    var el = document.getElementById("prazosList");
+    var acoes = allAcoes().filter(function(a){
+      if(!PRAZO.showDone && statusOf(a)==="Concluído") return false;
+      if(PRAZO.resp && respName(a)!==PRAZO.resp) return false;
+      if(PRAZO.okr && a.okrId!==PRAZO.okr) return false;
+      return true;
+    });
+    acoes.sort(function(a,b){ return String(a.dataTermino||"9999-99-99").localeCompare(String(b.dataTermino||"9999-99-99")); });
+
+    var groups = [
+      {key:"late",  title:"Em atraso",                  note:"prazo vencido, ainda não concluídas", items:[]},
+      {key:"soon",  title:"Vencem nos próximos 30 dias", note:"", items:[]},
+      {key:"later", title:"Prazos seguintes",            note:"", items:[]},
+      {key:"none",  title:"Sem prazo definido",          note:"", items:[]},
+      {key:"done",  title:"Concluídas",                  note:"", items:[]}
+    ];
+    acoes.forEach(function(a){
+      var st = displayStatus(a);
+      if(st==="Concluído"){ groups[4].items.push(a); return; }
+      var d = parseDate(a.dataTermino);
+      if(!d){ groups[3].items.push(a); return; }
+      var diff = daysBetween(today, d);
+      if(diff < 0) groups[0].items.push(a);
+      else if(diff <= 30) groups[1].items.push(a);
+      else groups[2].items.push(a);
+    });
+
+    var html = "";
+    groups.forEach(function(g){
+      if(!g.items.length) return;
+      html += '<div class="prazo-group"><h3>'+esc(g.title)+' <span class="n">'+g.items.length+(g.note? " · "+esc(g.note):"")+'</span></h3>';
+      html += g.items.map(function(a){ return deadlineRow(a, g.key); }).join("");
+      html += '</div>';
+    });
+    if(!html) html = '<div class="card"><div class="empty">Nenhuma ação corresponde a estes filtros.</div></div>';
+    el.innerHTML = html;
+
+    var cnt = groups[0].items.length + groups[1].items.length;
+    var badge = document.getElementById("tabPrazosCount");
+    badge.textContent = cnt ? "· "+cnt : "";
+    badge.style.color = groups[0].items.length ? "var(--st-late)" : "";
+  }
+
+  function deadlineRow(a, groupKey){
+    var okr = STATE.okrs.get(a.okrId);
+    var ind = STATE.indicadores.get(a.indicadorId);
+    var st = displayStatus(a);
+    var d = parseDate(a.dataTermino);
+    var rel = "", relClass = "";
+    if(st === "Concluído"){
+      rel = "concluída";
+      relClass = "done";
+    } else if(d){
+      var diff = daysBetween(today, d);
+      if(diff < 0){ rel = "atrasada há "+Math.abs(diff)+" dia(s)"; relClass = "late"; }
+      else if(diff === 0) rel = "vence hoje";
+      else if(diff === 1) rel = "vence amanhã";
+      else rel = "em "+diff+" dias";
+    } else rel = "sem prazo";
+    var s = etapaStats(a);
+    var color = okrColorOf(a.okrId);
+
+    var html = '<div class="dl-item '+groupKey+'" data-acao="'+esc(a.id)+'">';
+    html += '<div class="dl-date"><div class="d tabular">'+(d? fmtDateShort(a.dataTermino) : "—")+'</div><div class="rel '+relClass+'">'+esc(rel)+'</div></div>';
+    html += '<div class="dl-main">';
+    html += '<div class="kr-line"><span class="okr-chip" style="background:'+color+'">'+esc(okr?okr.code:"—")+'</span>'+
+      '<span class="kr-meta">'+esc(truncate(krLabel(ind), 62))+'</span></div>';
+    html += '<div class="acao-desc">'+esc(a.descricao)+'</div>';
+    if(okr && okr.planoAcao) html += '<div class="plano-line"><b>Plano de ação:</b> '+esc(truncate(okr.planoAcao, 96))+'</div>';
+    if(s.total){
+      var p = s.done/s.total;
+      html += '<div class="et-mini"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+(p===1?"var(--st-done)":"var(--st-doing)")+'"></span></span><span>'+s.done+'/'+s.total+' etapas</span></div>';
+    }
+    html += '</div>';
+    html += '<div class="dl-resp"><label>Responsável</label><input type="text" list="teamList" value="'+esc(a.responsavel||"")+'" placeholder="Não atribuído" data-kind="acao-resp" data-id="'+esc(a.id)+'"></div>';
+    html += '<div class="dl-status"><label>Status</label>'+statusControl(a)+'</div>';
+    html += '</div>';
+    return html;
+  }
+
+  // ---------- ABA 4: plano completo ----------
+  function passesFilter(a){
+    if(FILTERS.okr && a.okrId!==FILTERS.okr) return false;
+    if(FILTERS.status && displayStatus(a)!==FILTERS.status) return false;
+    if(FILTERS.resp && respName(a)!==FILTERS.resp) return false;
+    if(FILTERS.search && String(a.descricao||"").toLowerCase().indexOf(FILTERS.search.toLowerCase())===-1) return false;
+    return true;
+  }
+
+  function renderPlanoCompleto(){
+    renderFilterOptions();
+    var container = document.getElementById("okrList");
+    var okrs = allOkrs();
+    if(!okrs.length){ container.innerHTML = '<div class="empty">Nenhum OKR cadastrado. Use “+ novo OKR” para começar.</div>'; return; }
+    var filtering = !!(FILTERS.status||FILTERS.resp||FILTERS.search||FILTERS.okr);
+    var html = "";
+    okrs.forEach(function(okr){
+      if(FILTERS.okr && FILTERS.okr!==okr.id) return;
+      var acoesOkr = acoesOfOkr(okr.id);
+      if(filtering && !acoesOkr.filter(passesFilter).length) return;
+      var p = avgProgress(acoesOkr);
+      var color = okrColorOf(okr.id);
+      var isOpen = openState[okr.id] || filtering;
+
+      html += '<details class="okr-block" data-okr="'+esc(okr.id)+'"'+(isOpen?" open":"")+'>';
+      html += '<summary><span class="okr-chip" style="background:'+color+'">'+esc(okr.code)+'</span>'+
+        '<span class="okr-summary-main"><span class="t">'+esc(okr.title)+'</span><span class="s">'+esc(okr.sector||"Compliance")+' · '+acoesOkr.length+' ações</span></span>'+
+        '<span class="okr-meter"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+color+'"></span></span><span class="pct">'+fmtPct(p)+'</span></span>'+
+        '<svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+        '</summary><div class="okr-body">';
+      html += '<div style="margin-bottom:16px"><span class="field-label">Plano de ação (visão geral do OKR)</span>'+
+        '<textarea class="editable" data-kind="okr-plano" data-id="'+esc(okr.id)+'" rows="2">'+esc(okr.planoAcao||"")+'</textarea></div>';
+
+      indicadoresOf(okr.id).forEach(function(ind){
+        var acoes = acoesOf(ind.id);
+        var vis = acoes.filter(passesFilter);
+        if(filtering && !vis.length) return;
+        var ip = avgProgress(acoes);
+        html += '<div class="indicador" data-ind="'+esc(ind.id)+'">';
+        html += nomeCurtoField(ind);
+        html += '<div class="ind-head"><div class="ind-title"><span class="field-label">Resultado-chave / indicador</span>'+
+          '<textarea class="editable" data-kind="ind-descricao" data-id="'+esc(ind.id)+'" rows="2">'+esc(ind.descricao||"")+'</textarea></div>'+
+          '<div class="ind-meter"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(ip*100)+'%;background:'+color+'"></span></span><span class="pct">'+fmtPct(ip)+'</span></div></div>';
+        html += metaAnualBlock(ind);
+        html += '<div class="acoes-list">';
+        var show = filtering ? vis : acoes;
+        html += show.length ? show.map(function(a){ return acaoCard(a); }).join("") : '<div class="empty" style="padding:14px 0">Nenhuma ação nesta seção.</div>';
+        html += '</div>';
+        html += '<div class="add-row"><button class="ghost-btn" data-action="add-acao" data-ind="'+esc(ind.id)+'">+ nova ação</button></div>';
+        html += '<div class="ind-actions"><button class="danger-btn" data-action="del-indicador" data-id="'+esc(ind.id)+'">Excluir este resultado-chave</button></div>';
+        html += '</div>';
+      });
+
+      html += '<div class="add-row"><button class="ghost-btn" data-action="add-indicador" data-okr="'+esc(okr.id)+'">+ novo resultado-chave</button></div>';
+      html += '<div class="okr-danger"><button class="danger-btn" data-action="del-okr" data-id="'+esc(okr.id)+'">Excluir este OKR</button></div>';
+      html += '</div></details>';
+    });
+    var orfas = acoesOrfas();
+    if(orfas.length){
+      html += '<div class="okr-block"><div class="okr-body">'+
+        '<div class="tri-section-title">Ações sem resultado-chave <span class="n">'+orfas.length+'</span></div>'+
+        '<p class="tri-section-sub">Estas ações perderam o resultado-chave a que pertenciam e não aparecem em nenhuma análise. Exclua-as ou recrie o resultado-chave correspondente.</p>'+
+        '<div class="acoes-list">'+orfas.map(function(a){ return acaoCard(a); }).join("")+'</div>'+
+        '<div class="ind-actions"><button class="danger-btn" data-action="del-orfas">Excluir todas as ações sem resultado-chave</button></div>'+
+        '</div></div>';
+    }
+    container.innerHTML = html || '<div class="empty">Nenhuma ação corresponde aos filtros selecionados.</div>';
+    container.querySelectorAll("details.okr-block").forEach(function(d){
+      d.addEventListener("toggle", function(){ openState[d.getAttribute("data-okr")] = d.open; });
+    });
+  }
+
+  function renderFilterOptions(){
+    var okrSel = document.getElementById("fOkr"), cur = okrSel.value;
+    okrSel.innerHTML = '<option value="">Todos os OKRs</option>' + allOkrs().map(function(o){
+      return '<option value="'+esc(o.id)+'">'+esc(o.code)+" — "+esc(truncate(o.title,40))+'</option>';
+    }).join("");
+    okrSel.value = STATE.okrs.has(cur) ? cur : "";
+
+    var names = {};
+    allAcoes().forEach(function(a){ names[respName(a)] = true; });
+    var opts = '<option value="">Todos os responsáveis</option>' + Object.keys(names).sort().map(function(n){
+      return '<option value="'+esc(n)+'">'+esc(n)+'</option>';
+    }).join("");
+    var rSel = document.getElementById("fResp"), rCur = rSel.value;
+    rSel.innerHTML = opts; rSel.value = names[rCur] ? rCur : "";
+    var pSel = document.getElementById("pResp"), pCur = pSel.value;
+    pSel.innerHTML = opts; pSel.value = names[pCur] ? pCur : "";
+    var pOkr = document.getElementById("pOkr"), pOkrCur = pOkr.value;
+    pOkr.innerHTML = '<option value="">Todos os OKRs</option>' + allOkrs().map(function(o){
+      return '<option value="'+esc(o.id)+'">'+esc(o.code)+" — "+esc(truncate(o.title,40))+'</option>';
+    }).join("");
+    pOkr.value = STATE.okrs.has(pOkrCur) ? pOkrCur : "";
+  }
+
+  // ---------- orquestração ----------
+  function shouldSuppressRender(){
+    var a = document.activeElement;
+    if(!a) return false;
+    if(a.tagName === "TEXTAREA") return true;
+    if(a.tagName === "INPUT" && (a.type==="text" || a.type==="url")) return true;
+    return false;
+  }
+
+  function doRender(){
+    if(TRI.q === null) TRI.q = currentQuarter();
+    if(ACTIVE_TAB==="geral"){ renderKPIs(); renderCharts(); }
+    else if(ACTIVE_TAB==="tri"){ renderTriOptions(); renderTrimestre(); }
+    else if(ACTIVE_TAB==="kr"){ renderKrView(); }
+    else if(ACTIVE_TAB==="prazos"){ renderFilterOptions(); renderPrazos(); }
+    else { renderPlanoCompleto(); }
+    // contador da aba de prazos sempre atualizado
+    if(ACTIVE_TAB!=="prazos"){
+      var late = allAcoes().filter(isAtrasada).length;
+      var soon = allAcoes().filter(function(a){
+        if(displayStatus(a)==="Concluído" || isAtrasada(a)) return false;
+        var d = parseDate(a.dataTermino);
+        return d ? daysBetween(today,d) <= 30 : false;
+      }).length;
+      var badge = document.getElementById("tabPrazosCount");
+      badge.textContent = (late+soon) ? "· "+(late+soon) : "";
+      badge.style.color = late ? "var(--st-late)" : "";
+    }
+    var lg = document.getElementById("lastGenerated");
+    if(lg) lg.textContent = "Atualizado " + new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+  }
+
+  function renderAll(){
+    if(shouldSuppressRender()){ pendingRender = true; return; }
+    doRender(); pendingRender = false;
+  }
+
+  document.addEventListener("focusout", function(){
+    if(!pendingRender) return;
+    setTimeout(function(){ if(!shouldSuppressRender()){ doRender(); pendingRender = false; } }, 60);
+  });
+
+  function setTab(tab){
+    ACTIVE_TAB = tab;
+    try{ localStorage.setItem("plano2026.tab", tab); }catch(e){}
+    document.querySelectorAll(".tab").forEach(function(b){
+      b.setAttribute("aria-selected", String(b.getAttribute("data-tab")===tab));
+    });
+    ["geral","tri","kr","prazos","plano"].forEach(function(t){
+      document.getElementById("panel-"+t).hidden = (t!==tab);
+    });
+    doRender();
+    window.scrollTo({top:0, behavior:"auto"});
+  }
+
+  // ---------- escrita ----------
+  function showBanner(msg){
+    var b = document.getElementById("banner");
+    b.textContent = msg; b.classList.add("show");
+    clearTimeout(showBanner._t);
+    showBanner._t = setTimeout(function(){ b.classList.remove("show"); }, 5000);
+  }
+  function updateDoc(coll, id, patch){
+    if(!db){ showBanner("Sem conexão com o armazenamento — a alteração não foi salva."); return; }
+    db.collection(coll).doc(id).update(patch).catch(function(err){
+      showBanner("Não foi possível salvar: " + (err && err.message ? err.message : "tente novamente."));
+    });
+  }
+  function genId(p){ return p+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+
+  var modalPrevFocus = null, modalOnConfirm = null;
+  function askConfirm(opts){
+    var ov = document.getElementById("modalOverlay");
+    document.getElementById("modalTitle").textContent = opts.title || "Tem certeza que quer excluir?";
+    document.getElementById("modalMsg").innerHTML = opts.message || "";
+    var det = document.getElementById("modalDetail");
+    if(opts.detail){ det.innerHTML = opts.detail; det.hidden = false; } else { det.hidden = true; }
+    document.getElementById("modalConfirm").textContent = opts.confirmLabel || "Excluir";
+    modalOnConfirm = opts.onConfirm || null;
+    modalPrevFocus = document.activeElement;
+    ov.hidden = false;
+    document.getElementById("modalCancel").focus();
+  }
+  function closeConfirm(){
+    document.getElementById("modalOverlay").hidden = true;
+    modalOnConfirm = null;
+    if(modalPrevFocus && modalPrevFocus.focus) { try{ modalPrevFocus.focus(); }catch(e){} }
+    modalPrevFocus = null;
+  }
+  document.getElementById("modalCancel").addEventListener("click", closeConfirm);
+  document.getElementById("modalOverlay").addEventListener("click", function(e){
+    if(e.target === this) closeConfirm();
+  });
+  document.getElementById("modalConfirm").addEventListener("click", function(){
+    var fn = modalOnConfirm;
+    closeConfirm();
+    if(fn) fn();
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && !document.getElementById("modalOverlay").hidden) closeConfirm();
+  });
+
+  function deleteDocs(list){
+    if(!db) { showBanner("Sem conexão com o armazenamento — nada foi excluído."); return; }
+    Promise.all(list.map(function(x){ return db.collection(x.coll).doc(x.id).delete(); }))
+      .catch(function(err){ showBanner("Não foi possível concluir a exclusão: "+(err&&err.message||"tente novamente.")); });
+  }
+  function plural(n, sing, plur){ return n + " " + (n===1 ? sing : plur); }
+  function patchSub(acaoId, subId, patch){
+    var a = STATE.acoes.get(acaoId); if(!a) return;
+    var subs = (a.subtarefas||[]).map(function(s){ return s.id===subId ? Object.assign({},s,patch) : s; });
+    updateDoc("acoes", acaoId, {subtarefas: subs});
+  }
+
+  document.addEventListener("change", function(e){
+    var t = e.target, kind = t.getAttribute && t.getAttribute("data-kind");
+    if(!kind) return;
+    var id = t.getAttribute("data-id");
+    switch(kind){
+      case "okr-plano": updateDoc("okrs", id, {planoAcao:t.value}); break;
+      case "ind-descricao": updateDoc("indicadores", id, {descricao:t.value}); break;
+      case "ind-nome": updateDoc("indicadores", id, {nomeCurto:t.value}); break;
+      case "ind-meta2026": updateDoc("indicadores", id, {meta2026:t.value}); break;
+      case "ind-linhabase": updateDoc("indicadores", id, {linhaBase:t.value}); break;
+      case "acao-descricao": updateDoc("acoes", id, {descricao:t.value}); break;
+      case "acao-status": updateDoc("acoes", id, {status:t.value}); break;
+      case "acao-inicio": updateDoc("acoes", id, {dataInicio:t.value}); break;
+      case "acao-termino": updateDoc("acoes", id, {dataTermino:t.value}); break;
+      case "acao-resp": updateDoc("acoes", id, {responsavel:t.value}); break;
+      case "acao-link": updateDoc("acoes", id, {linkEvidencia:t.value}); break;
+      case "acao-trimestre": updateDoc("acoes", id, {trimestre:t.value}); break;
+      case "sub-trimestre": patchSub(id, t.getAttribute("data-sub"), {trimestre:t.value}); break;
+      case "sub-desc": patchSub(id, t.getAttribute("data-sub"), {descricao:t.value}); break;
+      case "sub-link": patchSub(id, t.getAttribute("data-sub"), {linkEvidencia:t.value}); break;
+      case "sub-check": patchSub(id, t.getAttribute("data-sub"), {status: t.checked ? "Concluído" : "Pendente"}); break;
+    }
+  });
+
+  document.addEventListener("click", function(e){
+    var tabBtn = e.target.closest(".tab");
+    if(tabBtn){ setTab(tabBtn.getAttribute("data-tab")); return; }
+
+    var t = e.target.closest("[data-action]");
+    if(!t) return;
+    var action = t.getAttribute("data-action"), id = t.getAttribute("data-id");
+
+    if(action==="select-kr"){ SELECTED_KR = id; renderKrView(); return; }
+    if(action==="split-acao"){
+      updateDoc("acoes", id, {subtarefas:[{id:genId("sub"), descricao:"Etapa 1", status:"Pendente", dataTermino:"", linkEvidencia:"", trimestre:""}]});
+      return;
+    }
+    if(action==="add-sub"){
+      var a = STATE.acoes.get(id); if(!a) return;
+      var subs = (a.subtarefas||[]).concat([{id:genId("sub"), descricao:"Etapa "+((a.subtarefas||[]).length+1), status:"Pendente", dataTermino:"", linkEvidencia:"", trimestre:""}]);
+      updateDoc("acoes", id, {subtarefas:subs});
+      return;
+    }
+    if(action==="del-sub"){
+      var a2 = STATE.acoes.get(id); if(!a2) return;
+      var subId = t.getAttribute("data-sub");
+      updateDoc("acoes", id, {subtarefas:(a2.subtarefas||[]).filter(function(s){return s.id!==subId;})});
+      return;
+    }
+    if(action==="del-acao"){
+      var ac = STATE.acoes.get(id); if(!ac) return;
+      var nEt = (ac.subtarefas||[]).length;
+      askConfirm({
+        message: "A ação <b>"+esc(truncate(ac.descricao,80))+"</b> será excluída do plano."+
+          (nEt ? " Junto com ela serão excluídas as suas "+plural(nEt,"etapa","etapas")+"." : ""),
+        detail: "Esta exclusão não pode ser desfeita.",
+        confirmLabel: "Excluir ação",
+        onConfirm: function(){ deleteDocs([{coll:"acoes", id:id}]); }
+      });
+      return;
+    }
+    if(action==="del-indicador"){
+      var ind = STATE.indicadores.get(id); if(!ind) return;
+      var acs = acoesOf(id);
+      var nEt2 = acs.reduce(function(n,a){ return n + (a.subtarefas||[]).length; }, 0);
+      var det = "Esta exclusão não pode ser desfeita.";
+      if(acs.length) det = "Serão excluídos também "+plural(acs.length,"plano de ação","planos de ação")+
+        (nEt2 ? " e "+plural(nEt2,"etapa","etapas") : "")+" vinculados a este resultado-chave. Esta exclusão não pode ser desfeita.";
+      askConfirm({
+        message: "O resultado-chave <b>"+esc(truncate(krLabel(ind),80))+"</b> será excluído.",
+        detail: det,
+        confirmLabel: "Excluir resultado-chave",
+        onConfirm: function(){
+          var docs = acs.map(function(a){ return {coll:"acoes", id:a.id}; });
+          docs.push({coll:"indicadores", id:id});
+          deleteDocs(docs);
+        }
+      });
+      return;
+    }
+    if(action==="del-okr"){
+      var okr = STATE.okrs.get(id); if(!okr) return;
+      var inds2 = indicadoresOf(id);
+      var acs2 = acoesOfOkr(id);
+      var nEt3 = acs2.reduce(function(n,a){ return n + (a.subtarefas||[]).length; }, 0);
+      var partes = [];
+      if(inds2.length) partes.push(plural(inds2.length,"resultado-chave","resultados-chave"));
+      if(acs2.length) partes.push(plural(acs2.length,"plano de ação","planos de ação"));
+      if(nEt3) partes.push(plural(nEt3,"etapa","etapas"));
+      askConfirm({
+        message: "O OKR <b>"+esc(okr.code)+" — "+esc(truncate(okr.title,70))+"</b> será excluído.",
+        detail: (partes.length ? "Serão excluídos também "+partes.join(", ")+" vinculados a ele. " : "")+"Esta exclusão não pode ser desfeita.",
+        confirmLabel: "Excluir OKR",
+        onConfirm: function(){
+          var docs = acs2.map(function(a){ return {coll:"acoes", id:a.id}; });
+          inds2.forEach(function(i){ docs.push({coll:"indicadores", id:i.id}); });
+          docs.push({coll:"okrs", id:id});
+          deleteDocs(docs);
+        }
+      });
+      return;
+    }
+    if(action==="del-orfas"){
+      var orfas = acoesOrfas();
+      if(!orfas.length) return;
+      askConfirm({
+        message: plural(orfas.length,"ação ficou","ações ficaram")+" sem resultado-chave e será excluída do plano.",
+        detail: "Esta exclusão não pode ser desfeita.",
+        confirmLabel: "Excluir",
+        onConfirm: function(){ deleteDocs(orfas.map(function(a){ return {coll:"acoes", id:a.id}; })); }
+      });
+      return;
+    }
+    if(action==="add-acao"){
+      var indId = t.getAttribute("data-ind");
+      var ind = STATE.indicadores.get(indId);
+      if(!ind || !db) return;
+      openState[ind.okrId] = true;
+      db.collection("acoes").add({
+        indicadorId:indId, okrId:ind.okrId, descricao:"Nova ação", dataInicio:"", dataTermino:"",
+        responsavel:"", status:"Pendente", linkEvidencia:"", trimestre:"", subtarefas:[]
+      }).catch(function(err){ showBanner("Não foi possível criar a ação: "+(err&&err.message||"")); });
+      return;
+    }
+    if(action==="add-indicador"){
+      var okrId = t.getAttribute("data-okr");
+      if(!db) return;
+      openState[okrId] = true;
+      db.collection("indicadores").add({
+        okrId:okrId, nomeCurto:"Novo resultado-chave", descricao:"", linhaBase:"", meta2026:"",
+        metaQ1:null, metaQ2:null, metaQ3:null, metaQ4:null, periodicidade:"Trimestral"
+      }).catch(function(err){ showBanner("Não foi possível criar o resultado-chave: "+(err&&err.message||"")); });
+      return;
+    }
+    if(action==="add-okr"){
+      if(!db) return;
+      var code = prompt("Código do novo OKR (ex.: 5.5):"); if(!code) return;
+      var title = prompt("Título do OKR:") || "Novo OKR";
+      var newId = genId("okr"); openState[newId] = true;
+      db.collection("okrs").doc(newId).set({code:code, title:title, sector:"Compliance", planoAcao:""})
+        .catch(function(err){ showBanner("Não foi possível criar o OKR: "+(err&&err.message||"")); });
+      return;
+    }
+  });
+
+  // filtros
+  ["fOkr","fStatus","fResp"].forEach(function(id){
+    document.getElementById(id).addEventListener("change", function(){
+      FILTERS.okr = document.getElementById("fOkr").value;
+      FILTERS.status = document.getElementById("fStatus").value;
+      FILTERS.resp = document.getElementById("fResp").value;
+      renderPlanoCompleto();
+    });
+  });
+  var searchT;
+  document.getElementById("fSearch").addEventListener("input", function(){
+    clearTimeout(searchT); var v = this.value;
+    searchT = setTimeout(function(){ FILTERS.search = v; renderPlanoCompleto(); }, 200);
+  });
+  document.getElementById("fClear").addEventListener("click", function(){
+    FILTERS = {okr:"",status:"",resp:"",search:""};
+    ["fOkr","fStatus","fResp","fSearch"].forEach(function(id){ document.getElementById(id).value = ""; });
+    renderPlanoCompleto();
+  });
+  document.getElementById("triQ").addEventListener("change", function(){ TRI.q = parseInt(this.value,10); renderTrimestre(); });
+  document.getElementById("triKr").addEventListener("change", function(){ TRI.kr = this.value; renderTrimestre(); });
+  document.getElementById("pShowDone").addEventListener("change", function(){ PRAZO.showDone = this.checked; renderPrazos(); });
+  document.getElementById("pResp").addEventListener("change", function(){ PRAZO.resp = this.value; renderPrazos(); });
+  document.getElementById("pOkr").addEventListener("change", function(){ PRAZO.okr = this.value; renderPrazos(); });
+
+  // ---------- db ----------
+  function setSync(state){
+    var dot = document.getElementById("syncDot"), txt = document.getElementById("syncText");
+    dot.className = "dot " + (state==="live"?"live":state==="off"?"off":"");
+    txt.textContent = state==="live" ? "Sincronizado em tempo real" : state==="off" ? "Sem sincronização — recarregue a página" : "Conectando…";
+  }
+
+  // Conexão com o banco: chamada pelo módulo Firebase depois do login.
+  function conectar(bancoAdaptado){
+    db = bancoAdaptado;
+    setSync("live");
+    ["okrs","indicadores","acoes"].forEach(function(coll){
+      db.collection(coll).onSnapshot(function(snap){
+        STATE[coll] = new Map(snap.docs.map(function(d){ return [d.id, Object.assign({id:d.id}, d.data())]; }));
+        renderAll();
+        if(window.__avaliarVazio) window.__avaliarVazio();
+      }, function(){ setSync("off"); });
+    });
+  }
+  window.__painelConectar = conectar;
+  window.__painelDesconectar = function(){ db = null; setSync("off"); };
+  window.__painelEstado = STATE;
+
+  document.getElementById("kpis").innerHTML = [1,2,3,4].map(function(){
+    return '<div class="tile"><div class="skeleton" style="height:58px"></div></div>';
+  }).join("");
+  setTab(ACTIVE_TAB);
+})();
+</script>
+
+
+<script type="application/json" id="dadosIniciais">{"okrs":{"okr-5-1":{"code":"5.1","planoAcao":"Consolidar o programa de compliance da ETIPI por meio de análise de riscos, due diligence, atualização normativa e comunicação interna","sector":"Compliance","title":"Desenvolvimento e implementação de um programa de compliance abrangente"},"okr-5-2":{"code":"5.2","planoAcao":"Fortalecer a governança e a integridade da ETIPI, da conduta ética ao canal de denúncias, incluindo a extensão do programa à Piauí Link","sector":"Compliance","title":"Desenvolvimento e implementação de um programa de governança abrangente"},"okr-5-3":{"code":"5.3","planoAcao":"Auditar a efetividade dos documentos normativos nos processos, estabelecendo o ciclo de auditorias de compliance","sector":"Compliance","title":"Realização de auditorias de compliance regulares"},"okr-5-4":{"code":"5.4","planoAcao":"Capacitar e engajar os colaboradores da ETIPI por meio de treinamentos e de canais de diálogo aberto sobre integridade e compliance.","sector":"Compliance","title":"Capacitação e conscientização em compliance para todos os funcionários"}},"indicadores":{"okr-5-1-ind-1":{"descricao":"% de conclusão das pendências da Avaliação de Riscos corporativa e do processo de due diligence (pendências 2025) até 31/12/2026","linhaBase":"Avaliação de Riscos 0%","meta2026":"Concluir os 8 passos da Metodologia de Risk Assessment nos setores/gerências prioritários mapeados.","metaQ1":0.25,"metaQ2":0.5,"metaQ3":0.75,"metaQ4":1,"nomeCurto":"Avaliação de Riscos (Risk Assessment)","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-1-ind-2":{"descricao":"% de conclusão do processo de due diligence  até 31/12/2026","linhaBase":"Due Diligence 0%","meta2026":"Implementar relatórios de due Diligence em 100% das contratações, renovações e parcerias de contrato da ETIPI","metaQ1":0.7,"metaQ2":1,"metaQ3":1,"metaQ4":1,"nomeCurto":"Due Diligence","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-1-ind-3":{"descricao":"% de conclusão das pendências da Avaliação de Riscos corporativa e do processo de due diligence (pendências 2025) até 31/12/2026","linhaBase":"Documentos Normativos existente: 16","meta2026":"Atualização do ciclo normativo e manter o monitoramento ativo de todas os Documentos Normativos vigentes com atualizações sob necessidade.","metaQ1":0,"metaQ2":1,"metaQ3":1,"metaQ4":1,"nomeCurto":"Ciclo normativo - Politica de Sustentabilidade","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-1-ind-4":{"descricao":"% de conclusão das pendências da Avaliação de Riscos corporativa e do processo de due diligence (pendências 2025) até 31/12/2026","linhaBase":"Campanhas realizadas 0%","meta2026":"Realização de 9 Campanhas Internas de Compliance até dez/2026","metaQ1":0,"metaQ2":0.33,"metaQ3":0.66,"metaQ4":1,"nomeCurto":"Campanhas internas","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-2-ind-5":{"descricao":"% de execução das entregas previstas no Plano Anual de Governança/ESG (Entregas concluídas / Entregas previstas).","linhaBase":"0% de maturidade de Governança/ESG","meta2026":"Concluir as 5 entregas previstas no Plano Anual de Governança/ESG em 2026","metaQ1":0,"metaQ2":0.4,"metaQ3":0.8,"metaQ4":1,"nomeCurto":"Governança/ESG","okrId":"okr-5-2","periodicidade":"Trimestral"},"okr-5-3-ind-6":{"descricao":"% de execução do Plano Anual de Auditorias de Compliance","linhaBase":"Auditorias de Compliance Realizadas 0%","meta2026":"Concluir a entrega prevista no Plano Anual de Auditorias de Compliance em 2026 (1 entrega)","metaQ1":0,"metaQ2":0,"metaQ3":0,"metaQ4":1,"nomeCurto":"Auditorias de compliance - utilização dos documento normativos.","okrId":"okr-5-3","periodicidade":"Trimestral"},"okr-5-4-ind-7":{"descricao":"% do Plano Anual de Capacitação e Conscientização em Compliance (Entregas concluídas / Entregas previstas).","linhaBase":"Maturidade de Capacitação e Conscientização em Compliance estruturada 0%","meta2026":"Realização de 4 Treinamentos e Capacitações","metaQ1":0,"metaQ2":0.25,"metaQ3":0.5,"metaQ4":1,"nomeCurto":"Capacitação e Treinamentos","okrId":"okr-5-4","periodicidade":"Trimestral"}},"acoes":{"14pqaurjp642q26zxk5z":{"dataInicio":"2026-11-01","dataTermino":"2026-11-30","descricao":"Campanha Novembro","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[],"trimestre":""},"acao-001":{"dataInicio":"2026-03-02","dataTermino":"2026-12-18","descricao":"Realizar a Análise de Risco (Risk Assesment) nos setores prioritários mapeados","indicadorId":"okr-5-1-ind-1","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Marcus Andre","status":"Em Andamento","subtarefas":[{"dataTermino":"","descricao":"Passo 1 - Conheça Sua Jurisdição","id":"acao-001-sub-1","linkEvidencia":"","status":"Concluído","trimestre":"T1"},{"dataTermino":"","descricao":"Passo 2 - Grade de Riscos / Fatores de Riscos","id":"acao-001-sub-2","linkEvidencia":"","status":"Concluído","trimestre":"T1"},{"dataTermino":"","descricao":"Passo 3 - Matriz de Impacto e Probabilidade","id":"acao-001-sub-3","linkEvidencia":"","status":"Concluído","trimestre":"T2"},{"dataTermino":"","descricao":"Passo 4 - Apuração do Grau de Risco Inerente","id":"acao-001-sub-4","linkEvidencia":"","status":"Concluído","trimestre":"T2"},{"dataTermino":"","descricao":"Passo 5 - Planejamento da Entrevistas","id":"acao-001-sub-5","linkEvidencia":"","status":"Pendente","trimestre":"T3"},{"dataTermino":"","descricao":"Passo 6 - Realização das Entrevistas","id":"acao-001-sub-6","linkEvidencia":"","status":"Pendente","trimestre":"T3"},{"dataTermino":"","descricao":"Passo 7 - Mapa de Calor do Risco Desejável ou Target","id":"acao-001-sub-7","linkEvidencia":"","status":"Pendente","trimestre":"T4"},{"dataTermino":"","descricao":"Passo 8 - Monitoramento da Execução do Plano de Ação","id":"acao-001-sub-8","linkEvidencia":"","status":"Pendente","trimestre":"T4"}]},"acao-002":{"dataInicio":"2026-02-02","dataTermino":"2026-06-30","descricao":"Finalizar a contratação da empresa especializada em due Diligence e Implementar os Relátorios de Integridade dentro dos processos de contratação, parcerias e patrocinio.","indicadorId":"okr-5-1-ind-2","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Marcus Andre","status":"Concluído","subtarefas":[]},"acao-003":{"dataInicio":"2026-03-02","dataTermino":"2026-06-30","descricao":"Atualizar a Política de Sustentabilidade da ETIPI com vistas às recentes melhores práticas em ESG","indicadorId":"okr-5-1-ind-3","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[]},"acao-004":{"dataInicio":"2026-05-01","dataTermino":"2026-05-31","descricao":"Campanha Maio - Video junto ao RH, sobre Saúde Mental.","indicadorId":"okr-5-1-ind-4","linkEvidencia":"https://www.instagram.com/reel/DY7d5uIx7sL/?igsh=MXQ4cmx0aHhlZDFsMg==","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[]},"acao-005":{"dataInicio":"2026-05-01","dataTermino":"2026-06-30","descricao":"Elaboração da Cartilha de Condutas Vedadas aos agentes públicos","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Isabela Siqueira","status":"Concluído","subtarefas":[]},"acao-006":{"dataInicio":"2026-04-01","dataTermino":"2026-09-30","descricao":"Implantar o Processo de Investigações Éticas (finalização do fluxo, com elaboração de manual e operacionalização)","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Isabela Siqueira","status":"Em Andamento","subtarefas":[{"dataTermino":"","descricao":"Revisar as mudanças no manual de investigação","id":"sub-mtwwh0awp9kkh","linkEvidencia":"","status":"Concluído","trimestre":"T3"},{"dataTermino":"","descricao":"Corrigir o fluxograma do manual","id":"sub-mtwwiyp5c1jcn","linkEvidencia":"","status":"Concluído","trimestre":"T3"}]},"acao-007":{"dataInicio":"2026-07-07","dataTermino":"2026-09-30","descricao":"Relátorio de Monitoramento do Canal de Denúncias","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Marcus Andre","status":"Concluído","subtarefas":[]},"acao-008":{"dataInicio":"2026-05-16","dataTermino":"2026-09-30","descricao":"Estender o Programa de Compliance à subsidiária Piauí Link","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Sonara Marques","status":"Concluído","subtarefas":[]},"acao-009":{"dataInicio":"2026-09-01","dataTermino":"2026-12-18","descricao":"Relátorio de Maturidade do Compliance","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Marcus Andre","status":"Pendente","subtarefas":[]},"acao-010":{"dataInicio":"2026-10-01","dataTermino":"2026-12-18","descricao":"Auditoria da utilização dos documentos normativos dentro da ETPI, medir a taxa de efetividade das politicas dentro dos processos da Companhia.","indicadorId":"okr-5-3-ind-6","linkEvidencia":"","okrId":"okr-5-3","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[]},"acao-011":{"dataInicio":"2026-06-01","dataTermino":"2026-09-30","descricao":"Treinamento 2 - Lançamento do Código de Conduta e  Integridade","indicadorId":"okr-5-4-ind-7","linkEvidencia":"","okrId":"okr-5-4","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[]},"acao-012":{"dataInicio":"2026-06-01","dataTermino":"2026-06-30","descricao":"Treinamento 1 - Os colaboradores sobre condutas vedadas durante o período eleitoral","indicadorId":"okr-5-4-ind-7","linkEvidencia":"https://www.pi.gov.br/etipi-orienta-colaboradores-sobre-boas-praticas-para-o-periodo-eleitoral/","okrId":"okr-5-4","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[]},"cg6mbtpob5zy8gemtmgo":{"dataInicio":"2026-08-01","dataTermino":"2026-08-31","descricao":"Campanha Agosto","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"dh9euz9i56cnttn1oab8":{"dataInicio":"2026-10-01","dataTermino":"2026-12-18","descricao":"Treinamento 3 - Promover canais de diálogo aberto para dúvidas e ideias sobre ética, compliance e ESG ( A DEFINIR)","indicadorId":"okr-5-4-ind-7","linkEvidencia":"","okrId":"okr-5-4","responsavel":"Sonara Marques","status":"Pendente","subtarefas":[],"trimestre":""},"gkcb66hz7ov58kepvvay":{"dataInicio":"2026-06-01","dataTermino":"2026-06-30","descricao":"Campanha Junho - Lançamento QR CODE Canais de Denúncias","indicadorId":"okr-5-1-ind-4","linkEvidencia":"https://drive.google.com/file/d/1hzSyre5NdzSSkdcz8ujm-hCbJKYJNaB7/view?usp=sharing","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"i1pttfy0anqza4dkebtq":{"dataInicio":"2026-12-01","dataTermino":"2026-12-31","descricao":"Campanha Dezembro","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[],"trimestre":""},"iinc2661e25vy200c1zg":{"dataInicio":"2026-10-01","dataTermino":"2026-10-31","descricao":"Campanha Outubro","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[],"trimestre":""},"lja9u2gci19baovj28rh":{"dataInicio":"2026-10-01","dataTermino":"2026-12-18","descricao":"Treinamento 4 - Promover canais de diálogo aberto para dúvidas e ideias sobre ética, compliance e ESG ( A DEFINIR)","indicadorId":"okr-5-4-ind-7","linkEvidencia":"","okrId":"okr-5-4","responsavel":"Sonara Marques","status":"Pendente","subtarefas":[],"trimestre":""},"lwjssvlhclqjviowzx1l":{"dataInicio":"2026-07-01","dataTermino":"2026-07-31","descricao":"Campanha Julho - Neutralidade no período eleitoral - intranet.","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"qy6fk7c8qovjnflhf2mz":{"dataInicio":"2026-04-01","dataTermino":"2026-04-30","descricao":"Campanha Abril - NR1 Cultura de prevenção a Acidentes e Doenças do Trabalho","indicadorId":"okr-5-1-ind-4","linkEvidencia":"https://www.etipi.com.br/etipi-reforca-cultura-de-prevencao-a-acidentes-e-doencas-do-trabalho","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"ulxn1tw1d73wm3ctisai":{"dataInicio":"2026-09-01","dataTermino":"2026-09-30","descricao":"Campanha Setembro - Guia rapido Codigo de Ética e Integridade","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Em Andamento","subtarefas":[],"trimestre":""}}}</script>
+
+<script nomodule>
+  document.getElementById("loginErro").hidden = false;
+  document.getElementById("loginErro").textContent = "Este navegador é antigo demais para o painel. Use uma versão atual do Chrome, Edge, Firefox ou Safari.";
+</script>
+
+<script type="module">
+/* =======================================================================
+   Ligação com o Firebase — Authentication (Google) + Firestore
+   ======================================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyDfdHGceI3LBSxjSlFJ1kugujSwqGRN-Qs",
+  authDomain: "compliance-etip-planejamento.firebaseapp.com",
+  projectId: "compliance-etip-planejamento",
+  storageBucket: "compliance-etip-planejamento.firebasestorage.app",
+  messagingSenderId: "459713477718",
+  appId: "1:459713477718:web:5d3b5d4795524c14bc0ff7"
+};
+
+const SDK = "https://www.gstatic.com/firebasejs/11.0.2/";
+
+const overlay  = document.getElementById("loginOverlay");
+const btnLogin = document.getElementById("btnLogin");
+const btnSair  = document.getElementById("btnSair");
+const elErro   = document.getElementById("loginErro");
+const elMsg    = document.getElementById("loginMsg");
+const elUser   = document.getElementById("syncUser");
+const elEmail  = document.getElementById("syncEmail");
+
+function erro(texto){ elErro.hidden = false; elErro.textContent = texto; }
+function limparErro(){ elErro.hidden = true; elErro.textContent = ""; }
+
+let FB = null;      // módulos carregados
+let fs = null;      // instância do Firestore
+let importando = false;
+
+/* ---------- 1. carrega o SDK (import dinâmico para poder tratar falha) ---------- */
+let mApp, mAuth, mFs;
+try {
+  [mApp, mAuth, mFs] = await Promise.all([
+    import(SDK + "firebase-app.js"),
+    import(SDK + "firebase-auth.js"),
+    import(SDK + "firebase-firestore.js")
+  ]);
+} catch (e) {
+  erro("Não foi possível carregar o SDK do Firebase (" + SDK + "). Verifique a conexão com a internet ou se algum bloqueador/proxy está barrando www.gstatic.com.");
+  console.error(e);
+  throw e;
+}
+
+const app  = mApp.initializeApp(firebaseConfig);
+const auth = mAuth.getAuth(app);
+fs = mFs.getFirestore(app);
+const provider = new mAuth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+
+/* ---------- 2. adaptador: mantém a mesma interface db.collection(...) ---------- */
+function criarAdaptador(fs){
+  const { collection, doc, onSnapshot, updateDoc, setDoc, deleteDoc, addDoc } = mFs;
+  return {
+    collection: function(nome){
+      const ref = collection(fs, nome);
+      return {
+        onSnapshot: function(proximo, aoFalhar){
+          return onSnapshot(ref, function(snap){
+            proximo({ docs: snap.docs.map(function(d){
+              return { id: d.id, data: function(){ return d.data(); } };
+            })});
+          }, function(e){ console.error("onSnapshot " + nome, e); if(aoFalhar) aoFalhar(e); });
+        },
+        doc: function(id){
+          const dref = doc(fs, nome, id);
+          return {
+            update: function(parcial){ return updateDoc(dref, parcial).catch(falhaGravacao); },
+            set:    function(dados){   return setDoc(dref, dados).catch(falhaGravacao); },
+            delete: function(){        return deleteDoc(dref).catch(falhaGravacao); }
+          };
+        },
+        add: function(dados){ return addDoc(ref, dados).catch(falhaGravacao); }
+      };
+    }
+  };
+}
+function falhaGravacao(e){
+  console.error("Falha ao gravar no Firestore", e);
+  alert("Não foi possível salvar a alteração no banco.\n\n" + (e && e.code ? e.code : e) +
+        "\n\nSe aparecer 'permission-denied', confirme que seu e-mail está na coleção usuarios do Firestore.");
+}
+
+/* ---------- 3. login / logout ---------- */
+btnLogin.disabled = false;
+btnLogin.addEventListener("click", async function(){
+  limparErro();
+  btnLogin.disabled = true;
+  try {
+    await mAuth.signInWithPopup(auth, provider);
+  } catch (e) {
+    const c = e && e.code || "";
+    if (c === "auth/unauthorized-domain") {
+      erro("Este domínio não está autorizado no Firebase. No console: Authentication → Settings → Authorized domains → adicione " + location.hostname + ".");
+    } else if (c === "auth/popup-blocked") {
+      erro("O navegador bloqueou a janela de login. Libere pop-ups para este site e tente novamente.");
+    } else if (c === "auth/popup-closed-by-user" || c === "auth/cancelled-popup-request") {
+      limparErro();
+    } else {
+      erro("Falha no login: " + (c || e));
+    }
+    console.error(e);
+  } finally {
+    btnLogin.disabled = false;
+  }
+});
+
+btnSair.addEventListener("click", function(){ mAuth.signOut(auth); });
+
+mAuth.onAuthStateChanged(auth, async function(user){
+  if (!user) {
+    if (window.__painelDesconectar) window.__painelDesconectar();
+    elUser.hidden = true;
+    overlay.style.display = "flex";
+    elMsg.textContent = "Acesso restrito à equipe de Compliance. Entre com a conta Google autorizada.";
+    return;
+  }
+  // autenticado: testa se está autorizado (regra exige doc em usuarios/{email})
+  try {
+    await mFs.getDoc(mFs.doc(fs, "usuarios", user.email));
+  } catch (e) {
+    erro("A conta " + user.email + " entrou, mas não tem permissão de acesso. " +
+         "Cadastre um documento com o ID " + user.email + " na coleção usuarios do Firestore.");
+    mAuth.signOut(auth);
+    return;
+  }
+  limparErro();
+  overlay.style.display = "none";
+  elUser.hidden = false;
+  elEmail.textContent = user.email;
+  window.__painelConectar(criarAdaptador(fs));
+});
+
+/* ---------- 4. importação dos dados iniciais ---------- */
+const DADOS = JSON.parse(document.getElementById("dadosIniciais").textContent);
+
+window.__avaliarVazio = function(){
+  const st = window.__painelEstado;
+  if (!st) return;
+  const vazio = (!st.okrs || st.okrs.size === 0) && (!st.acoes || st.acoes.size === 0);
+  const barra = document.getElementById("barraImport");
+  if (vazio && !barra && !importando) mostrarBarra();
+  if (!vazio && barra) barra.remove();
+};
+
+function mostrarBarra(){
+  const el = document.createElement("div");
+  el.className = "barra-import";
+  el.id = "barraImport";
+  el.innerHTML = '<p><strong>O banco está vazio.</strong> Posso carregar os 33 registros atuais do planejamento ' +
+                 '(4 OKRs, 7 resultados-chave e 22 planos de ação com suas etapas).</p>' +
+                 '<button id="btnImportar">Importar dados iniciais</button>' +
+                 '<button class="ghost" id="btnDispensar">Agora não</button>';
+  document.body.appendChild(el);
+  document.getElementById("btnDispensar").addEventListener("click", function(){ el.remove(); });
+  document.getElementById("btnImportar").addEventListener("click", async function(){
+    if (!confirm("Importar os dados iniciais para o Firestore?")) return;
+    importando = true;
+    const btn = document.getElementById("btnImportar");
+    btn.disabled = true; btn.textContent = "Importando…";
+    try {
+      const lote = mFs.writeBatch(fs);
+      for (const coll of ["okrs","indicadores","acoes"]) {
+        for (const [id, dados] of Object.entries(DADOS[coll])) {
+          lote.set(mFs.doc(fs, coll, id), dados);
+        }
+      }
+      await lote.commit();
+      el.remove();
+    } catch (e) {
+      btn.disabled = false; btn.textContent = "Importar dados iniciais";
+      alert("Falha na importação: " + (e && e.code ? e.code : e));
+      console.error(e);
+    } finally {
+      importando = false;
+    }
+  });
+}
+</script>
+
+</body></html>

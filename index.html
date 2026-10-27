@@ -1378,7 +1378,8 @@
     var a = document.activeElement;
     if(!a) return false;
     if(a.tagName === "TEXTAREA") return true;
-    if(a.tagName === "INPUT" && (a.type==="text" || a.type==="url")) return true;
+    if(a.tagName === "INPUT" && (a.type==="text" || a.type==="url" || a.type==="date" ||
+       a.type==="datetime-local" || a.type==="month" || a.type==="number")) return true;
     return false;
   }
 

@@ -20,9 +20,9 @@
     /* cores de preenchimento de barras (vivas; as de cima são para texto) */
     --fill-done:#1fa06c; --fill-doing:#e0a338; --fill-todo:#7f9ab8; --fill-late:#e05555;
     /* trimestres (rampa azul) */
-    --q-1:#5a97dd; --q-2:#3a80d0; --q-3:#1f63ae; --q-4:#15457c;
-    /* okr (rampa azul) */
-    --okr-1:#15457c; --okr-2:#1f63ae; --okr-3:#2f80cf; --okr-4:#1a86d6;
+    --q-1:#4a8ada; --q-2:#2f80cf; --q-3:#1f63ae; --q-4:#15457c;
+    /* okr — cor única, priorizando legibilidade */
+    --okr-1:#1f63ae; --okr-2:#1f63ae; --okr-3:#1f63ae; --okr-4:#1f63ae;
     --shadow:0 1px 2px rgba(11,31,56,.06), 0 2px 8px rgba(11,31,56,.04);
     color-scheme: light;
   }
@@ -37,9 +37,8 @@
       --st-todo:#94aec9; --st-todo-bg:rgba(148,174,201,.14);
       --st-late:#f07d7d; --st-late-bg:rgba(240,125,125,.16);
       --fill-done:#42c191; --fill-doing:#e0a94e; --fill-todo:#94aec9; --fill-late:#f07d7d;
-      --fill-done:#42c191; --fill-doing:#e0a94e; --fill-todo:#94aec9; --fill-late:#f07d7d;
-    --q-1:#2e6ec0; --q-2:#4a8ada; --q-3:#82b4e8; --q-4:#cfe2f8;
-      --okr-1:#cfe2f8; --okr-2:#9ec8f2; --okr-3:#6ba6e6; --okr-4:#4a8ada;
+      --q-1:#4a8ada; --q-2:#6ba6e6; --q-3:#9ec8f2; --q-4:#cfe2f8;
+      --okr-1:#82b4e8; --okr-2:#82b4e8; --okr-3:#82b4e8; --okr-4:#82b4e8;
       --shadow:0 1px 2px rgba(0,0,0,.3);
       color-scheme: dark;
     }
@@ -53,8 +52,9 @@
     --st-doing:#e0a94e; --st-doing-bg:rgba(224,169,78,.16);
     --st-todo:#94aec9; --st-todo-bg:rgba(148,174,201,.14);
     --st-late:#f07d7d; --st-late-bg:rgba(240,125,125,.16);
-    --q-1:#2e6ec0; --q-2:#4a8ada; --q-3:#82b4e8; --q-4:#cfe2f8;
-    --okr-1:#cfe2f8; --okr-2:#9ec8f2; --okr-3:#6ba6e6; --okr-4:#4a8ada;
+    --fill-done:#42c191; --fill-doing:#e0a94e; --fill-todo:#94aec9; --fill-late:#f07d7d;
+    --q-1:#4a8ada; --q-2:#6ba6e6; --q-3:#9ec8f2; --q-4:#cfe2f8;
+    --okr-1:#82b4e8; --okr-2:#82b4e8; --okr-3:#82b4e8; --okr-4:#82b4e8;
     --shadow:0 1px 2px rgba(0,0,0,.3);
     color-scheme: dark;
   }
@@ -126,7 +126,7 @@
   .bar-row{ display:grid; grid-template-columns:52px 1fr 46px; align-items:center; gap:10px; margin-bottom:13px; }
   .bar-row:last-child{ margin-bottom:0; }
   .bar-row .rlabel{ font-size:12.5px; font-weight:600; color:var(--ink-2); }
-  .bar-track{ height:10px; border-radius:6px; background:var(--grid); overflow:hidden; }
+  .bar-track{ height:12px; border-radius:6px; background:var(--grid); overflow:hidden; }
   .bar-fill{ display:block; height:100%; border-radius:6px; min-width:3px; transition:width .4s ease; }
   .bar-row .rval{ font-size:12.5px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }
 

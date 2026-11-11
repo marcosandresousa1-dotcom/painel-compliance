@@ -17,10 +17,12 @@
     --st-doing:#9a6208; --st-doing-bg:#fbeed4;
     --st-todo:#4f6a86; --st-todo-bg:#e8eff7;
     --st-late:#bf3434; --st-late-bg:#fbe4e4;
+    /* cores de preenchimento de barras (vivas; as de cima são para texto) */
+    --fill-done:#1fa06c; --fill-doing:#e0a338; --fill-todo:#7f9ab8; --fill-late:#e05555;
     /* trimestres (rampa azul) */
-    --q-1:#b9d5f4; --q-2:#82b4e8; --q-3:#2a6dc0; --q-4:#163a63;
+    --q-1:#5a97dd; --q-2:#3a80d0; --q-3:#1f63ae; --q-4:#15457c;
     /* okr (rampa azul) */
-    --okr-1:#0f2c50; --okr-2:#1c4f8f; --okr-3:#3a80d0; --okr-4:#82b4e8;
+    --okr-1:#15457c; --okr-2:#1f63ae; --okr-3:#2f80cf; --okr-4:#1a86d6;
     --shadow:0 1px 2px rgba(11,31,56,.06), 0 2px 8px rgba(11,31,56,.04);
     color-scheme: light;
   }
@@ -34,8 +36,10 @@
       --st-doing:#e0a94e; --st-doing-bg:rgba(224,169,78,.16);
       --st-todo:#94aec9; --st-todo-bg:rgba(148,174,201,.14);
       --st-late:#f07d7d; --st-late-bg:rgba(240,125,125,.16);
-      --q-1:#163a63; --q-2:#1c4f8f; --q-3:#3a80d0; --q-4:#82b4e8;
-      --okr-1:#82b4e8; --okr-2:#4a8ada; --okr-3:#2a6dc0; --okr-4:#163a63;
+      --fill-done:#42c191; --fill-doing:#e0a94e; --fill-todo:#94aec9; --fill-late:#f07d7d;
+      --fill-done:#42c191; --fill-doing:#e0a94e; --fill-todo:#94aec9; --fill-late:#f07d7d;
+    --q-1:#2e6ec0; --q-2:#4a8ada; --q-3:#82b4e8; --q-4:#cfe2f8;
+      --okr-1:#cfe2f8; --okr-2:#9ec8f2; --okr-3:#6ba6e6; --okr-4:#4a8ada;
       --shadow:0 1px 2px rgba(0,0,0,.3);
       color-scheme: dark;
     }
@@ -49,8 +53,8 @@
     --st-doing:#e0a94e; --st-doing-bg:rgba(224,169,78,.16);
     --st-todo:#94aec9; --st-todo-bg:rgba(148,174,201,.14);
     --st-late:#f07d7d; --st-late-bg:rgba(240,125,125,.16);
-    --q-1:#163a63; --q-2:#1c4f8f; --q-3:#3a80d0; --q-4:#82b4e8;
-    --okr-1:#82b4e8; --okr-2:#4a8ada; --okr-3:#2a6dc0; --okr-4:#163a63;
+    --q-1:#2e6ec0; --q-2:#4a8ada; --q-3:#82b4e8; --q-4:#cfe2f8;
+    --okr-1:#cfe2f8; --okr-2:#9ec8f2; --okr-3:#6ba6e6; --okr-4:#4a8ada;
     --shadow:0 1px 2px rgba(0,0,0,.3);
     color-scheme: dark;
   }
@@ -197,7 +201,7 @@
   .qtargets .qt.anual{ background:var(--navy-600); color:#fff; }
 
   /* ---------- okr chip ---------- */
-  .okr-chip{ font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600; padding:3px 9px; border-radius:6px; color:#fff; flex:none; }
+  .okr-chip{ font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600; padding:3px 9px; border-radius:6px; flex:none; }
 
   /* ---------- aba: por KR ---------- */
   .kr-layout{ display:grid; grid-template-columns:300px 1fr; gap:16px; align-items:start; }
@@ -403,6 +407,12 @@
   @keyframes sk{ 0%{background-position:100% 0} 100%{background-position:0 0} }
   @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }
 
+/* ---------- seletor de tema ---------- */
+.theme-switch{ display:inline-flex; gap:2px; padding:2px; border-radius:999px; border:1px solid rgba(255,255,255,.28); margin-top:8px; }
+.theme-switch button{ border:0; background:transparent; color:rgba(255,255,255,.72); font:600 11px/1 "IBM Plex Sans",sans-serif; padding:5px 10px; border-radius:999px; cursor:pointer; }
+.theme-switch button:hover{ color:#fff; }
+.theme-switch button[aria-pressed="true"]{ background:rgba(255,255,255,.92); color:#0b2545; }
+
 /* ---------- login / firebase ---------- */
 .login-overlay{position:fixed;inset:0;z-index:9000;background:linear-gradient(160deg,#0b2545 0%,#13315c 55%,#1b4079 100%);display:flex;align-items:center;justify-content:center;padding:24px}
 .login-card{background:#fff;border-radius:16px;padding:32px 28px;max-width:420px;width:100%;box-shadow:0 24px 60px rgba(8,20,40,.35);text-align:left}
@@ -424,6 +434,15 @@
 .barra-import button.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
 </style>
 
+
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem("plano2026.tema");
+      if(t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    }catch(e){}
+  })();
+</script>
 
 <div class="login-overlay" id="loginOverlay">
   <div class="login-card">
@@ -449,6 +468,11 @@
     <div>
       <div class="sync"><span class="dot" id="syncDot"></span><span id="syncText">Conectando…</span></div>
       <div class="sync-user" id="syncUser" hidden><span id="syncEmail"></span><button class="btn-sair" id="btnSair">Sair</button></div>
+      <div class="theme-switch" id="themeSwitch" role="group" aria-label="Tema do painel">
+        <button type="button" data-theme-set="light">Claro</button>
+        <button type="button" data-theme-set="dark">Escuro</button>
+        <button type="button" data-theme-set="auto">Automático</button>
+      </div>
     </div>
   </div>
 </header>
@@ -571,7 +595,7 @@
   var OKR_COLORS = ["var(--okr-1)","var(--okr-2)","var(--okr-3)","var(--okr-4)"];
   var STATUS_OPTIONS = ["Pendente","Em Andamento","Concluído"];
   var STATUS_CLASS = {"Concluído":"s-done","Em Andamento":"s-doing","Pendente":"s-todo","Atrasado":"s-late"};
-  var STATUS_COLOR = {"Concluído":"var(--st-done)","Em Andamento":"var(--st-doing)","Pendente":"var(--st-todo)","Atrasado":"var(--st-late)"};
+  var STATUS_COLOR = {"Concluído":"var(--fill-done)","Em Andamento":"var(--fill-doing)","Pendente":"var(--fill-todo)","Atrasado":"var(--fill-late)"};
   var today = new Date(); today.setHours(0,0,0,0);
 
   var STATE = { okrs:new Map(), indicadores:new Map(), acoes:new Map() };
@@ -635,7 +659,7 @@
   }
   function displayStatus(a){ return isAtrasada(a) ? "Atrasado" : statusOf(a); }
   function stClass(s){ return STATUS_CLASS[s] || "s-todo"; }
-  function stColor(s){ return STATUS_COLOR[s] || "var(--st-todo)"; }
+  function stColor(s){ return STATUS_COLOR[s] || "var(--fill-todo)"; }
 
   function allAcoes(){ return Array.from(STATE.acoes.values()); }
   function allOkrs(){
@@ -659,6 +683,21 @@
   function acoesOrfas(){ return allAcoes().filter(function(a){ return !STATE.indicadores.has(a.indicadorId); }); }
   function okrIndex(okrId){ var l = allOkrs(); for(var i=0;i<l.length;i++){ if(l[i].id===okrId) return i; } return 0; }
   function okrColorOf(okrId){ return OKR_COLORS[okrIndex(okrId) % OKR_COLORS.length]; }
+  // texto legível sobre a cor do OKR (clara -> texto escuro, escura -> texto branco)
+  function okrInkOf(okrId){
+    var v = okrColorOf(okrId);
+    var nome = v.replace(/^var\(/, "").replace(/\)$/, "");
+    var hex = "";
+    try{ hex = getComputedStyle(document.documentElement).getPropertyValue(nome).trim(); }catch(e){}
+    var m = hex.match(/^#?([0-9a-fA-F]{6})$/);
+    if(!m) return "#fff";
+    var n = parseInt(m[1], 16);
+    var ch = [(n>>16)&255, (n>>8)&255, n&255].map(function(c){
+      c = c/255; return c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4);
+    });
+    var L = 0.2126*ch[0] + 0.7152*ch[1] + 0.0722*ch[2];
+    return L > 0.35 ? "#0b2545" : "#fff";
+  }
   function avgProgress(list){ return list.length ? list.reduce(function(s,a){return s+progressOf(a);},0)/list.length : 0; }
   function respName(a){ return (a.responsavel && a.responsavel.trim()) ? a.responsavel.trim() : "Não atribuído"; }
 
@@ -888,7 +927,7 @@
     }).join("");
     return '<div class="etapas">'+
       '<div class="etapas-head"><span class="et-label">Etapas da ação</span>'+
-        '<span class="et-prog"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+(p===1?"var(--st-done)":"var(--st-doing)")+'"></span></span><span class="pct">'+s.done+'/'+s.total+'</span></span>'+
+        '<span class="et-prog"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+(p===1?"var(--fill-done)":"var(--fill-doing)")+'"></span></span><span class="pct">'+s.done+'/'+s.total+'</span></span>'+
       '</div>'+ rows +
       '<button class="ghost-btn" data-action="add-sub" data-id="'+esc(a.id)+'">+ nova etapa</button>'+
       '</div>';
@@ -977,7 +1016,7 @@
 
     var html = '<div class="card">';
     html += '<div class="kr-detail-head">'+
-      '<span class="okr-chip" style="background:'+color+'">'+esc(okr?okr.code:"—")+'</span>'+
+      '<span class="okr-chip" style="background:'+color+';color:'+okrInkOf(ind.okrId)+'">'+esc(okr?okr.code:"—")+'</span>'+
       '<span class="okr-t">'+esc(krLabel(ind))+'<span class="okr-sub">'+esc(okr?okr.title:"")+'</span></span>'+
       '<span class="okr-meter"><span class="bar-track" style="width:100px"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+color+'"></span></span><span class="pct">'+fmtPct(p)+'</span></span>'+
       '</div>';
@@ -1072,7 +1111,7 @@
         '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(meta*100)+'%;background:var(--blue-300)"></span></span>'+
         '<span class="cv">'+fmtPct(meta)+'</span></div>';
       html += '<div class="cmp-row"><span class="cl">Realizado</span>'+
-        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(realizado*100)+'%;background:'+(realizado>=meta?"var(--st-done)":"var(--st-doing)")+'"></span></span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(realizado*100)+'%;background:'+(realizado>=meta?"var(--fill-done)":"var(--fill-doing)")+'"></span></span>'+
         '<span class="cv">'+fmtPct(realizado)+'</span></div>';
       var diff = Math.round((realizado-meta)*100);
       html += '<p class="cmp-note">'+(diff>=0
@@ -1160,7 +1199,7 @@
     var etDone = etapas.filter(function(s){return s.status==="Concluído";}).length;
     var html = '<div class="tri-item '+cls+'" data-acao="'+esc(a.id)+'">';
     html += '<div class="ti-top">'+statusControl(a)+
-      '<span class="okr-chip" style="background:'+okrColorOf(a.okrId)+'">'+esc(okr?okr.code:"—")+'</span>'+
+      '<span class="okr-chip" style="background:'+okrColorOf(a.okrId)+';color:'+okrInkOf(a.okrId)+'">'+esc(okr?okr.code:"—")+'</span>'+
       (isEntrega ? "" : '<span class="q-badge">entrega em T'+(acaoQuarter(a)||"?")+'</span>')+
       '</div>';
     html += '<div class="ti-desc">'+esc(a.descricao)+'</div>';
@@ -1263,13 +1302,13 @@
     var html = '<div class="dl-item '+groupKey+'" data-acao="'+esc(a.id)+'">';
     html += '<div class="dl-date"><div class="d tabular">'+(d? fmtDateShort(a.dataTermino) : "—")+'</div><div class="rel '+relClass+'">'+esc(rel)+'</div></div>';
     html += '<div class="dl-main">';
-    html += '<div class="kr-line"><span class="okr-chip" style="background:'+color+'">'+esc(okr?okr.code:"—")+'</span>'+
+    html += '<div class="kr-line"><span class="okr-chip" style="background:'+color+';color:'+okrInkOf(a.okrId)+'">'+esc(okr?okr.code:"—")+'</span>'+
       '<span class="kr-meta">'+esc(truncate(krLabel(ind), 62))+'</span></div>';
     html += '<div class="acao-desc">'+esc(a.descricao)+'</div>';
     if(okr && okr.planoAcao) html += '<div class="plano-line"><b>Plano de ação:</b> '+esc(truncate(okr.planoAcao, 96))+'</div>';
     if(s.total){
       var p = s.done/s.total;
-      html += '<div class="et-mini"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+(p===1?"var(--st-done)":"var(--st-doing)")+'"></span></span><span>'+s.done+'/'+s.total+' etapas</span></div>';
+      html += '<div class="et-mini"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+(p===1?"var(--fill-done)":"var(--fill-doing)")+'"></span></span><span>'+s.done+'/'+s.total+' etapas</span></div>';
     }
     html += '</div>';
     html += '<div class="dl-resp"><label>Responsável</label><input type="text" list="teamList" value="'+esc(a.responsavel||"")+'" placeholder="Não atribuído" data-kind="acao-resp" data-id="'+esc(a.id)+'"></div>';
@@ -1303,7 +1342,7 @@
       var isOpen = openState[okr.id] || filtering;
 
       html += '<details class="okr-block" data-okr="'+esc(okr.id)+'"'+(isOpen?" open":"")+'>';
-      html += '<summary><span class="okr-chip" style="background:'+color+'">'+esc(okr.code)+'</span>'+
+      html += '<summary><span class="okr-chip" style="background:'+color+';color:'+okrInkOf(okr.id)+'">'+esc(okr.code)+'</span>'+
         '<span class="okr-summary-main"><span class="t">'+esc(okr.title)+'</span><span class="s">'+esc(okr.sector||"Compliance")+' · '+acoesOkr.length+' ações</span></span>'+
         '<span class="okr-meter"><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(p*100)+'%;background:'+color+'"></span></span><span class="pct">'+fmtPct(p)+'</span></span>'+
         '<svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
@@ -1678,6 +1717,7 @@
     });
   }
   window.__painelConectar = conectar;
+  window.__painelRedesenhar = doRender;
   window.__painelDesconectar = function(){ db = null; setSync("off"); };
   window.__painelEstado = STATE;
 
@@ -1688,6 +1728,36 @@
 })();
 </script>
 
+
+<script>
+  (function(){
+    var caixa = document.getElementById("themeSwitch");
+    if(!caixa) return;
+
+    function atual(){
+      var t = document.documentElement.getAttribute("data-theme");
+      return (t === "light" || t === "dark") ? t : "auto";
+    }
+    function marcar(){
+      var a = atual();
+      Array.prototype.forEach.call(caixa.querySelectorAll("button"), function(b){
+        b.setAttribute("aria-pressed", b.getAttribute("data-theme-set") === a ? "true" : "false");
+      });
+    }
+    caixa.addEventListener("click", function(e){
+      var b = e.target.closest("[data-theme-set]");
+      if(!b) return;
+      var escolha = b.getAttribute("data-theme-set");
+      if(escolha === "auto") document.documentElement.removeAttribute("data-theme");
+      else document.documentElement.setAttribute("data-theme", escolha);
+      try{ localStorage.setItem("plano2026.tema", escolha); }catch(err){}
+      marcar();
+      // as etiquetas dos OKRs calculam a cor do texto a partir do tema: redesenha
+      if(window.__painelRedesenhar) window.__painelRedesenhar();
+    });
+    marcar();
+  })();
+</script>
 
 <script type="application/json" id="dadosIniciais">{"okrs":{"okr-5-1":{"code":"5.1","planoAcao":"Consolidar o programa de compliance da ETIPI por meio de análise de riscos, due diligence, atualização normativa e comunicação interna","sector":"Compliance","title":"Desenvolvimento e implementação de um programa de compliance abrangente"},"okr-5-2":{"code":"5.2","planoAcao":"Fortalecer a governança e a integridade da ETIPI, da conduta ética ao canal de denúncias, incluindo a extensão do programa à Piauí Link","sector":"Compliance","title":"Desenvolvimento e implementação de um programa de governança abrangente"},"okr-5-3":{"code":"5.3","planoAcao":"Auditar a efetividade dos documentos normativos nos processos, estabelecendo o ciclo de auditorias de compliance","sector":"Compliance","title":"Realização de auditorias de compliance regulares"},"okr-5-4":{"code":"5.4","planoAcao":"Capacitar e engajar os colaboradores da ETIPI por meio de treinamentos e de canais de diálogo aberto sobre integridade e compliance.","sector":"Compliance","title":"Capacitação e conscientização em compliance para todos os funcionários"}},"indicadores":{"okr-5-1-ind-1":{"descricao":"% de conclusão das pendências da Avaliação de Riscos corporativa e do processo de due diligence (pendências 2025) até 31/12/2026","linhaBase":"Avaliação de Riscos 0%","meta2026":"Concluir os 8 passos da Metodologia de Risk Assessment nos setores/gerências prioritários mapeados.","metaQ1":0.25,"metaQ2":0.5,"metaQ3":0.75,"metaQ4":1,"nomeCurto":"Avaliação de Riscos (Risk Assessment)","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-1-ind-2":{"descricao":"% de conclusão do processo de due diligence  até 31/12/2026","linhaBase":"Due Diligence 0%","meta2026":"Implementar relatórios de due Diligence em 100% das contratações, renovações e parcerias de contrato da ETIPI","metaQ1":0.7,"metaQ2":1,"metaQ3":1,"metaQ4":1,"nomeCurto":"Due Diligence","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-1-ind-3":{"descricao":"% de conclusão das pendências da Avaliação de Riscos corporativa e do processo de due diligence (pendências 2025) até 31/12/2026","linhaBase":"Documentos Normativos existente: 16","meta2026":"Atualização do ciclo normativo e manter o monitoramento ativo de todas os Documentos Normativos vigentes com atualizações sob necessidade.","metaQ1":0,"metaQ2":1,"metaQ3":1,"metaQ4":1,"nomeCurto":"Ciclo normativo - Politica de Sustentabilidade","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-1-ind-4":{"descricao":"% de conclusão das pendências da Avaliação de Riscos corporativa e do processo de due diligence (pendências 2025) até 31/12/2026","linhaBase":"Campanhas realizadas 0%","meta2026":"Realização de 9 Campanhas Internas de Compliance até dez/2026","metaQ1":0,"metaQ2":0.33,"metaQ3":0.66,"metaQ4":1,"nomeCurto":"Campanhas internas","okrId":"okr-5-1","periodicidade":"Trimestral"},"okr-5-2-ind-5":{"descricao":"% de execução das entregas previstas no Plano Anual de Governança/ESG (Entregas concluídas / Entregas previstas).","linhaBase":"0% de maturidade de Governança/ESG","meta2026":"Concluir as 5 entregas previstas no Plano Anual de Governança/ESG em 2026","metaQ1":0,"metaQ2":0.4,"metaQ3":0.8,"metaQ4":1,"nomeCurto":"Governança/ESG","okrId":"okr-5-2","periodicidade":"Trimestral"},"okr-5-3-ind-6":{"descricao":"% de execução do Plano Anual de Auditorias de Compliance","linhaBase":"Auditorias de Compliance Realizadas 0%","meta2026":"Concluir a entrega prevista no Plano Anual de Auditorias de Compliance em 2026 (1 entrega)","metaQ1":0,"metaQ2":0,"metaQ3":0,"metaQ4":1,"nomeCurto":"Auditorias de compliance - utilização dos documento normativos.","okrId":"okr-5-3","periodicidade":"Trimestral"},"okr-5-4-ind-7":{"descricao":"% do Plano Anual de Capacitação e Conscientização em Compliance (Entregas concluídas / Entregas previstas).","linhaBase":"Maturidade de Capacitação e Conscientização em Compliance estruturada 0%","meta2026":"Realização de 4 Treinamentos e Capacitações","metaQ1":0,"metaQ2":0.25,"metaQ3":0.5,"metaQ4":1,"nomeCurto":"Capacitação e Treinamentos","okrId":"okr-5-4","periodicidade":"Trimestral"}},"acoes":{"14pqaurjp642q26zxk5z":{"dataInicio":"2026-11-01","dataTermino":"2026-11-30","descricao":"Campanha Novembro","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[],"trimestre":""},"acao-001":{"dataInicio":"2026-03-02","dataTermino":"2026-12-18","descricao":"Realizar a Análise de Risco (Risk Assesment) nos setores prioritários mapeados","indicadorId":"okr-5-1-ind-1","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Marcus Andre","status":"Em Andamento","subtarefas":[{"dataTermino":"","descricao":"Passo 1 - Conheça Sua Jurisdição","id":"acao-001-sub-1","linkEvidencia":"","status":"Concluído","trimestre":"T1"},{"dataTermino":"","descricao":"Passo 2 - Grade de Riscos / Fatores de Riscos","id":"acao-001-sub-2","linkEvidencia":"","status":"Concluído","trimestre":"T1"},{"dataTermino":"","descricao":"Passo 3 - Matriz de Impacto e Probabilidade","id":"acao-001-sub-3","linkEvidencia":"","status":"Concluído","trimestre":"T2"},{"dataTermino":"","descricao":"Passo 4 - Apuração do Grau de Risco Inerente","id":"acao-001-sub-4","linkEvidencia":"","status":"Concluído","trimestre":"T2"},{"dataTermino":"","descricao":"Passo 5 - Planejamento da Entrevistas","id":"acao-001-sub-5","linkEvidencia":"","status":"Pendente","trimestre":"T3"},{"dataTermino":"","descricao":"Passo 6 - Realização das Entrevistas","id":"acao-001-sub-6","linkEvidencia":"","status":"Pendente","trimestre":"T3"},{"dataTermino":"","descricao":"Passo 7 - Mapa de Calor do Risco Desejável ou Target","id":"acao-001-sub-7","linkEvidencia":"","status":"Pendente","trimestre":"T4"},{"dataTermino":"","descricao":"Passo 8 - Monitoramento da Execução do Plano de Ação","id":"acao-001-sub-8","linkEvidencia":"","status":"Pendente","trimestre":"T4"}]},"acao-002":{"dataInicio":"2026-02-02","dataTermino":"2026-06-30","descricao":"Finalizar a contratação da empresa especializada em due Diligence e Implementar os Relátorios de Integridade dentro dos processos de contratação, parcerias e patrocinio.","indicadorId":"okr-5-1-ind-2","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Marcus Andre","status":"Concluído","subtarefas":[]},"acao-003":{"dataInicio":"2026-03-02","dataTermino":"2026-06-30","descricao":"Atualizar a Política de Sustentabilidade da ETIPI com vistas às recentes melhores práticas em ESG","indicadorId":"okr-5-1-ind-3","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[]},"acao-004":{"dataInicio":"2026-05-01","dataTermino":"2026-05-31","descricao":"Campanha Maio - Video junto ao RH, sobre Saúde Mental.","indicadorId":"okr-5-1-ind-4","linkEvidencia":"https://www.instagram.com/reel/DY7d5uIx7sL/?igsh=MXQ4cmx0aHhlZDFsMg==","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[]},"acao-005":{"dataInicio":"2026-05-01","dataTermino":"2026-06-30","descricao":"Elaboração da Cartilha de Condutas Vedadas aos agentes públicos","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Isabela Siqueira","status":"Concluído","subtarefas":[]},"acao-006":{"dataInicio":"2026-04-01","dataTermino":"2026-09-30","descricao":"Implantar o Processo de Investigações Éticas (finalização do fluxo, com elaboração de manual e operacionalização)","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Isabela Siqueira","status":"Em Andamento","subtarefas":[{"dataTermino":"","descricao":"Revisar as mudanças no manual de investigação","id":"sub-mtwwh0awp9kkh","linkEvidencia":"","status":"Concluído","trimestre":"T3"},{"dataTermino":"","descricao":"Corrigir o fluxograma do manual","id":"sub-mtwwiyp5c1jcn","linkEvidencia":"","status":"Concluído","trimestre":"T3"}]},"acao-007":{"dataInicio":"2026-07-07","dataTermino":"2026-09-30","descricao":"Relátorio de Monitoramento do Canal de Denúncias","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Marcus Andre","status":"Concluído","subtarefas":[]},"acao-008":{"dataInicio":"2026-05-16","dataTermino":"2026-09-30","descricao":"Estender o Programa de Compliance à subsidiária Piauí Link","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Sonara Marques","status":"Concluído","subtarefas":[]},"acao-009":{"dataInicio":"2026-09-01","dataTermino":"2026-12-18","descricao":"Relátorio de Maturidade do Compliance","indicadorId":"okr-5-2-ind-5","linkEvidencia":"","okrId":"okr-5-2","responsavel":"Marcus Andre","status":"Pendente","subtarefas":[]},"acao-010":{"dataInicio":"2026-10-01","dataTermino":"2026-12-18","descricao":"Auditoria da utilização dos documentos normativos dentro da ETPI, medir a taxa de efetividade das politicas dentro dos processos da Companhia.","indicadorId":"okr-5-3-ind-6","linkEvidencia":"","okrId":"okr-5-3","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[]},"acao-011":{"dataInicio":"2026-06-01","dataTermino":"2026-09-30","descricao":"Treinamento 2 - Lançamento do Código de Conduta e  Integridade","indicadorId":"okr-5-4-ind-7","linkEvidencia":"","okrId":"okr-5-4","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[]},"acao-012":{"dataInicio":"2026-06-01","dataTermino":"2026-06-30","descricao":"Treinamento 1 - Os colaboradores sobre condutas vedadas durante o período eleitoral","indicadorId":"okr-5-4-ind-7","linkEvidencia":"https://www.pi.gov.br/etipi-orienta-colaboradores-sobre-boas-praticas-para-o-periodo-eleitoral/","okrId":"okr-5-4","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[]},"cg6mbtpob5zy8gemtmgo":{"dataInicio":"2026-08-01","dataTermino":"2026-08-31","descricao":"Campanha Agosto","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"dh9euz9i56cnttn1oab8":{"dataInicio":"2026-10-01","dataTermino":"2026-12-18","descricao":"Treinamento 3 - Promover canais de diálogo aberto para dúvidas e ideias sobre ética, compliance e ESG ( A DEFINIR)","indicadorId":"okr-5-4-ind-7","linkEvidencia":"","okrId":"okr-5-4","responsavel":"Sonara Marques","status":"Pendente","subtarefas":[],"trimestre":""},"gkcb66hz7ov58kepvvay":{"dataInicio":"2026-06-01","dataTermino":"2026-06-30","descricao":"Campanha Junho - Lançamento QR CODE Canais de Denúncias","indicadorId":"okr-5-1-ind-4","linkEvidencia":"https://drive.google.com/file/d/1hzSyre5NdzSSkdcz8ujm-hCbJKYJNaB7/view?usp=sharing","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"i1pttfy0anqza4dkebtq":{"dataInicio":"2026-12-01","dataTermino":"2026-12-31","descricao":"Campanha Dezembro","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[],"trimestre":""},"iinc2661e25vy200c1zg":{"dataInicio":"2026-10-01","dataTermino":"2026-10-31","descricao":"Campanha Outubro","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Pendente","subtarefas":[],"trimestre":""},"lja9u2gci19baovj28rh":{"dataInicio":"2026-10-01","dataTermino":"2026-12-18","descricao":"Treinamento 4 - Promover canais de diálogo aberto para dúvidas e ideias sobre ética, compliance e ESG ( A DEFINIR)","indicadorId":"okr-5-4-ind-7","linkEvidencia":"","okrId":"okr-5-4","responsavel":"Sonara Marques","status":"Pendente","subtarefas":[],"trimestre":""},"lwjssvlhclqjviowzx1l":{"dataInicio":"2026-07-01","dataTermino":"2026-07-31","descricao":"Campanha Julho - Neutralidade no período eleitoral - intranet.","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"qy6fk7c8qovjnflhf2mz":{"dataInicio":"2026-04-01","dataTermino":"2026-04-30","descricao":"Campanha Abril - NR1 Cultura de prevenção a Acidentes e Doenças do Trabalho","indicadorId":"okr-5-1-ind-4","linkEvidencia":"https://www.etipi.com.br/etipi-reforca-cultura-de-prevencao-a-acidentes-e-doencas-do-trabalho","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Concluído","subtarefas":[],"trimestre":""},"ulxn1tw1d73wm3ctisai":{"dataInicio":"2026-09-01","dataTermino":"2026-09-30","descricao":"Campanha Setembro - Guia rapido Codigo de Ética e Integridade","indicadorId":"okr-5-1-ind-4","linkEvidencia":"","okrId":"okr-5-1","responsavel":"Aluisio Holanda","status":"Em Andamento","subtarefas":[],"trimestre":""}}}</script>
 
